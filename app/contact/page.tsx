@@ -44,9 +44,9 @@ export default function ContactPage() {
                 <Mail className="w-3.5 h-3.5" />
                 Contact Us
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold font-display text-[var(--text-primary)] mt-4">
+              <h1 className="text-5xl md:text-6xl font-extrabold font-display text-black mt-4">
                 Get In{" "}
-                <span className="text-gradient">Touch</span>
+                <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Touch</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                 Ready to start your journey? Reach out for free counseling, course details, or any queries.
