@@ -7,24 +7,20 @@ import {
   Mail,
   Phone,
   MapPin,
-  Instagram,
   Facebook,
-  Youtube,
-  Twitter,
   Send,
   ArrowRight,
   Sparkles,
+  MessageSquare,
+  Globe,
 } from "lucide-react";
 
 const footerLinks = {
   courses: [
-    { label: "Class 9-10", href: "/courses#class-9-10" },
-    { label: "Class 11-12 Science", href: "/courses#class-11-12-science" },
-    { label: "Class 11-12 Commerce", href: "/courses#class-11-12-commerce" },
-    { label: "JEE Preparation", href: "/courses#jee" },
-    { label: "NEET Preparation", href: "/courses#neet" },
-    { label: "WBJEE Preparation", href: "/courses#wbjee" },
-    { label: "Computer Science", href: "/courses#cs" },
+    { label: "Class 5-8 Foundation", href: "/courses#class-5-8" },
+    { label: "Class 9-10 WBBSE Prep", href: "/courses#class-9-10" },
+    { label: "Mathematics Section", href: "/courses" },
+    { label: "Science Section", href: "/courses" },
   ],
   quickLinks: [
     { label: "About Us", href: "/about" },
@@ -42,10 +38,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Instagram, href: "https://instagram.com/studywithsutirtha", label: "Instagram", color: "hover:text-black hover:bg-[#D2FF00]" },
-  { icon: Facebook, href: "https://facebook.com/studywithsutirtha", label: "Facebook", color: "hover:text-black hover:bg-[#D2FF00]" },
-  { icon: Youtube, href: "https://youtube.com/studywithsutirtha", label: "YouTube", color: "hover:text-black hover:bg-[#D2FF00]" },
-  { icon: Twitter, href: "https://twitter.com/studywithsutirtha", label: "Twitter", color: "hover:text-black hover:bg-[#D2FF00]" },
+  { icon: MessageSquare, href: "https://whatsapp.com/channel/0029VanhifO3QxS2AfwGoM1H", label: "WhatsApp Channel", color: "hover:text-black hover:bg-[#D2FF00]" },
+  { icon: Send, href: "https://t.me/studywithsutirtha", label: "Telegram", color: "hover:text-black hover:bg-[#D2FF00]" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61562268243681", label: "Facebook", color: "hover:text-black hover:bg-[#D2FF00]" },
+  { icon: Globe, href: "https://sites.google.com/view/studywithsutirtha/home", label: "Google Site", color: "hover:text-black hover:bg-[#D2FF00]" },
 ];
 
 export function Footer() {
@@ -153,22 +149,22 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm text-slate-100 font-semibold leading-relaxed mb-6">
-              Shaping futures through excellence in education. Premier coaching for JEE, NEET, WBJEE &amp; Board Exams.
+              Shaping futures through academic excellence. Coaching center for Class 5 to Class 10 (Mathematics & Science Sections Only, WBBSE).
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3 font-semibold text-slate-100 text-sm">
-              <a href="tel:+919800000000" className="flex items-center gap-3 hover:text-[#D2FF00] transition-colors" id="footer-phone">
+              <a href="tel:+919064077914" className="flex items-center gap-3 hover:text-[#D2FF00] transition-colors" id="footer-phone">
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#D2FF00]" />
-                +91 98000 00000
+                +91 90640 77914
               </a>
-              <a href="mailto:info@studywithsutirtha.com" className="flex items-center gap-3 hover:text-[#D2FF00] transition-colors" id="footer-email">
+              <a href="mailto:studywithsutirtha@gmail.com" className="flex items-center gap-3 hover:text-[#D2FF00] transition-colors" id="footer-email">
                 <Mail className="w-4 h-4 flex-shrink-0 text-[#D2FF00]" />
-                info@studywithsutirtha.com
+                studywithsutirtha@gmail.com
               </a>
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 flex-shrink-0 text-[#D2FF00] mt-0.5" />
-                <span>123, Education Hub, Kolkata, West Bengal - 700001</span>
+                <span>Choutaramore, Gopinagar, Hooghly, 712402</span>
               </div>
             </div>
 
@@ -231,10 +227,10 @@ export function Footer() {
             <h4 className="font-extrabold font-display text-white text-lg mb-5 uppercase tracking-wider">Our Achievements</h4>
             <div className="grid grid-cols-2 gap-3.5">
               {[
-                { value: "5000+", label: "Students" },
-                { value: "98%", label: "Success Rate" },
-                { value: "500+", label: "Top Rankers" },
-                { value: "15+", label: "Years Exp." },
+                { value: "Class 5-10", label: "Grades Covered" },
+                { value: "WBBSE", label: "Curriculum" },
+                { value: "Math & Sci", label: "Specialization" },
+                { value: "Since 2009", label: "Trust" },
               ].map((stat) => (
                 <div
                   key={stat.label}

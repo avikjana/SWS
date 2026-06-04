@@ -75,7 +75,7 @@ export default function ContactPage() {
                     </p>
                     <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-sm text-blue-300">
                       For urgent matters, call us directly at{" "}
-                      <a href="tel:+919800000000" className="font-bold text-blue-400">+91 98000 00000</a>
+                      <a href="tel:+919064077914" className="font-bold text-blue-400">+91 90640 77914</a>
                     </div>
                     <button
                       onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", subject: "", message: "", courseInterest: "" }); }}
@@ -126,13 +126,9 @@ export default function ContactPage() {
                           className="w-full px-4 py-3 rounded-xl glass border border-[var(--border)] text-[var(--text-primary)] focus:outline-none focus:border-blue-500/50 text-sm"
                           id="contact-course">
                           <option value="">Select a course (optional)</option>
-                          <option>Class 9-10 Foundation</option>
-                          <option>Class 11-12 Science</option>
-                          <option>Class 11-12 Commerce</option>
-                          <option>JEE Preparation</option>
-                          <option>NEET Preparation</option>
-                          <option>WBJEE Preparation</option>
-                          <option>Computer Science</option>
+                          <option>Class 5 to 8 Foundation</option>
+                          <option>Class 9 to 10 WBBSE Prep</option>
+                          <option>Home Personal Tuition (Offline)</option>
                           <option>General Inquiry</option>
                         </select>
                       </div>
@@ -169,23 +165,23 @@ export default function ContactPage() {
                 <div className="card-premium p-6 border border-[var(--border)]">
                   <h3 className="text-xl font-bold font-display text-[var(--text-primary)] mb-5">Contact Information</h3>
                   <div className="space-y-4">
-                    <a href="tel:+919800000000" className="flex items-center gap-4 group" id="contact-info-phone">
+                    <a href="tel:+919064077914" className="flex items-center gap-4 group" id="contact-info-phone">
                       <div className="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/25 transition-colors">
                         <Phone className="w-5 h-5 text-blue-400" />
                       </div>
                       <div>
                         <p className="text-xs text-[var(--text-muted)]">Call Us</p>
-                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400 transition-colors">+91 98000 00000</p>
-                        <p className="text-xs text-[var(--text-muted)]">Mon – Sat, 9AM – 7PM</p>
+                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400 transition-colors">+91 90640 77914</p>
+                        <p className="text-xs text-[var(--text-muted)]">We are available 24 Hours</p>
                       </div>
                     </a>
-                    <a href="mailto:info@studywithsutirtha.com" className="flex items-center gap-4 group" id="contact-info-email">
+                    <a href="mailto:studywithsutirtha@gmail.com" className="flex items-center gap-4 group" id="contact-info-email">
                       <div className="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/25 transition-colors">
                         <Mail className="w-5 h-5 text-purple-400" />
                       </div>
                       <div>
                         <p className="text-xs text-[var(--text-muted)]">Email Us</p>
-                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400 transition-colors">info@studywithsutirtha.com</p>
+                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400 transition-colors">studywithsutirtha@gmail.com</p>
                         <p className="text-xs text-[var(--text-muted)]">We reply within 24 hours</p>
                       </div>
                     </a>
@@ -195,8 +191,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-xs text-[var(--text-muted)]">Visit Us</p>
-                        <p className="font-semibold text-[var(--text-primary)]">123, Education Hub</p>
-                        <p className="text-sm text-[var(--text-secondary)]">Near City College, Kolkata, WB 700001</p>
+                        <p className="font-semibold text-[var(--text-primary)]">Choutaramore, Gopinagar</p>
+                        <p className="text-sm text-[var(--text-secondary)]">Hooghly, West Bengal - 712402</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -205,8 +201,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-xs text-[var(--text-muted)]">Office Hours</p>
-                        <p className="font-semibold text-[var(--text-primary)]">Monday – Saturday</p>
-                        <p className="text-sm text-[var(--text-secondary)]">9:00 AM – 7:00 PM</p>
+                        <p className="font-semibold text-[var(--text-primary)]">Always Available</p>
+                        <p className="text-sm text-[var(--text-secondary)]">24 Hours / 7 Days a week</p>
                       </div>
                     </div>
                   </div>
@@ -216,7 +212,7 @@ export default function ContactPage() {
               {/* WhatsApp CTA */}
               <ScrollReveal direction="right" delay={0.15}>
                 <a
-                  href="https://wa.me/919800000000?text=Hi! I want to know more about Study With Sutirtha courses and enrollment."
+                  href="https://wa.me/919064077914?text=Hi! I want to know more about Study With Sutirtha courses and enrollment."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-6 card-premium border border-green-500/20 hover:border-green-500/40 group transition-all"
@@ -239,11 +235,11 @@ export default function ContactPage() {
                   <div className="h-56 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex flex-col items-center justify-center gap-3 text-[var(--text-muted)]">
                     <MapPin className="w-12 h-12 text-blue-400" />
                     <div className="text-center">
-                      <p className="font-medium text-[var(--text-secondary)]">Google Maps Integration</p>
-                      <p className="text-xs mt-1">Add your NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to show map</p>
+                      <p className="font-medium text-[var(--text-secondary)]">Study With Sutirtha</p>
+                      <p className="text-xs mt-1">Choutaramore, Gopinagar, Hooghly, 712402</p>
                     </div>
                     <a
-                      href="https://maps.google.com/?q=Kolkata,WB"
+                      href="https://maps.google.com/?q=Choutaramore,Gopinagar,Hooghly,712402"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-secondary text-sm py-2 px-4 mt-2"

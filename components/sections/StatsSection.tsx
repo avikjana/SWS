@@ -4,12 +4,12 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { TrendingUp } from "lucide-react";
 
 const stats = [
-  { end: 5000, suffix: "+", label: "Students Enrolled",       description: "Across all courses and batches" },
-  { end: 98,   suffix: "%", label: "Board Exam Success Rate", description: "Students clearing 90%+ in boards" },
-  { end: 500,  suffix: "+", label: "JEE/NEET Qualifiers",    description: "In the last 5 years alone" },
-  { end: 15,   suffix: "+", label: "Years of Excellence",     description: "Trusted since 2009" },
-  { end: 47,   suffix: "",  label: "Expert Faculty Members",  description: "IIT, AIIMS & top university alumni" },
-  { end: 250,  suffix: "+", label: "WBJEE Qualifiers",        description: "Top ranks across West Bengal" },
+  { end: 15,   suffix: "+", label: "Years of Trust",          description: "Providing quality education since 2009" },
+  { end: 98,   suffix: "%", label: "WBBSE Success Rate",      description: "Students achieving high marks in math & science" },
+  { end: 100,  suffix: "%", label: "WBBSE Curriculum Align",  description: "Fully aligned with WBBSE syllabus standards" },
+  { end: 4,    suffix: "/wk", label: "Classes Per Week",      description: "Maximum 3 to 4 classes in every week" },
+  { end: 24,   suffix: " hrs", label: "Mentor Availability",  description: "Always available 24 hours for you" },
+  { end: 1,    suffix: " on 1", label: "Doubt Support",       description: "Special doubt clearing sessions" },
 ];
 
 export function StatsSection() {
@@ -56,11 +56,11 @@ export function StatsSection() {
               <p className="text-2xl md:text-4xl font-extrabold font-display text-white mb-3 uppercase tracking-tight">
                 Ready to become our next <span className="text-[#D2FF00]">success story</span>?
               </p>
-              <p className="text-white/80 font-semibold mb-8 max-w-md mx-auto">Seats are limited. Secure your spot today to start learning with our expert IIT/AIIMS team.</p>
+              <p className="text-white/80 font-semibold mb-8 max-w-md mx-auto">Start your preparation today. Contact us for any offline or online coaching inquiry.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="/contact" className="btn-primary text-base px-8 py-4" id="stats-enroll-cta">Enroll Today</a>
-                <a href="tel:+919800000000" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white text-white font-extrabold hover:bg-white/10 active:translate-y-[1px] transition-all" id="stats-call-cta">
-                  Call: +91 98000 00000
+                <a href="tel:+919064077914" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white text-white font-extrabold hover:bg-white/10 active:translate-y-[1px] transition-all" id="stats-call-cta">
+                  Call: +91 90640 77914
                 </a>
               </div>
             </div>

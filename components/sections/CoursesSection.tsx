@@ -8,13 +8,46 @@ import { InquiryModal } from "@/features/InquiryModal";
 import type { Course } from "@/types";
 
 const fallbackCourses = [
-  { _id:"1", title:"Class 9-10 Foundation",    category:"class-9-10",            description:"Build a strong foundation in Math, Science & English for board exams and competitive exam readiness.", duration:"1-2 Years", feesDisplay:"₹30,000/year", features:["Math & Science","English Grammar","Board Exam Prep","Weekly Tests","Digital Material"], icon:"📚", badge:"Foundation", isPopular:false, badgeCls:"badge-green",  accentBg:"bg-green-50",  accentText:"text-green-700" },
-  { _id:"2", title:"Class 11-12 Science",       category:"class-11-12-science",   description:"Comprehensive PCM/PCB preparation combining board excellence and JEE/NEET foundation.",              duration:"2 Years",   feesDisplay:"₹55,000/year", features:["Physics · Chemistry · Math/Bio","Board + Competitive Prep","Lab Sessions","Mock Tests","Expert Faculty"],  icon:"⚗️", badge:"Most Popular", isPopular:true,  badgeCls:"badge-blue",   accentBg:"bg-blue-50",   accentText:"text-blue-700"  },
-  { _id:"3", title:"Class 11-12 Commerce",      category:"class-11-12-commerce",  description:"Master Accounts, Economics & Business Studies to ace boards and CA Foundation preparation.",          duration:"2 Years",   feesDisplay:"₹40,000/year", features:["Accounts & Economics","Business Studies","Board Focused","CA Foundation Prep","PYQ Practice"],  icon:"📊", badge:"Commerce",     isPopular:false, badgeCls:"badge-purple", accentBg:"bg-purple-50", accentText:"text-purple-700"},
-  { _id:"4", title:"JEE Main & Advanced",       category:"jee",                   description:"Intensive IIT JEE preparation covering all chapters with advanced problem-solving techniques.",         duration:"1-2 Years", feesDisplay:"₹75,000/year", features:["PCM Deep Coverage","Advanced Problem Solving","JEE Mock Tests","IIT Alumni Faculty","Rank Analysis"],icon:"🎯", badge:"IIT JEE",      isPopular:true,  badgeCls:"badge-orange", accentBg:"bg-orange-50", accentText:"text-orange-700"},
-  { _id:"5", title:"NEET Preparation",          category:"neet",                  description:"Complete NEET Biology, Chemistry & Physics preparation by AIIMS alumni with 1000+ PYQs.",              duration:"1-2 Years", feesDisplay:"₹70,000/year", features:["NCERT-Focused PCB","Biology Deep Dive","AIIMS Faculty","NEET Mock Tests","1000+ PYQs"],       icon:"🏥", badge:"Medical",      isPopular:true,  badgeCls:"badge-green",  accentBg:"bg-emerald-50",accentText:"text-emerald-700"},
-  { _id:"6", title:"WBJEE Preparation",         category:"wbjee",                 description:"State-specific WBJEE preparation focusing on West Bengal engineering entrance syllabus.",              duration:"1 Year",    feesDisplay:"₹45,000/year", features:["PCM WB Syllabus","WBJEE Mock Tests","State Rank Strategy","PYQ Analysis","Doubt Sessions"],   icon:"🏆", badge:"WBJEE",        isPopular:false, badgeCls:"badge-purple", accentBg:"bg-indigo-50", accentText:"text-indigo-700"},
-  { _id:"7", title:"Computer Science",          category:"cs",                    description:"Learn Python, C++, Data Structures, Web Dev & competitive programming from industry experts.",         duration:"6M–1 Year", feesDisplay:"₹35,000/course",features:["Python & C++","Data Structures","Web Development","Competitive Programming","Project Based"], icon:"💻", badge:"Tech",         isPopular:false, badgeCls:"badge-blue",   accentBg:"bg-cyan-50",   accentText:"text-cyan-700"  },
+  {
+    _id: "1",
+    title: "Class 5-8 Foundation",
+    category: "class-5-8",
+    description: "Build an unshakeable foundation in Mathematics and Science. Perfect for early concept clearing, regular class tests, and comprehensive syllabus coverage.",
+    duration: "Ongoing",
+    feesDisplay: "Contact for Fees",
+    features: [
+      "Mathematics & Science focus",
+      "Regular weekly exams",
+      "Doubt clearing support",
+      "Offline/Online flexibility"
+    ],
+    icon: "📚",
+    badge: "Foundation Program",
+    isPopular: false,
+    badgeCls: "badge-green",
+    accentBg: "bg-green-50",
+    accentText: "text-green-700"
+  },
+  {
+    _id: "2",
+    title: "Class 9-10 WBBSE Board Prep",
+    category: "class-9-10",
+    description: "Comprehensive academic preparation for Class 9 and Class 10 board exams (Mathematics & Science Sections only, WBBSE). Includes weekly mock exams, personal tutoring availability, and soft/hard copy notes.",
+    duration: "1-2 Years",
+    feesDisplay: "Contact for Fees",
+    features: [
+      "WBBSE syllabus coverage",
+      "Math & Science sections only",
+      "Chapter wise test facility",
+      "Personal Home Tuition options"
+    ],
+    icon: "⚗️",
+    badge: "WBBSE Board Preparation",
+    isPopular: true,
+    badgeCls: "badge-blue",
+    accentBg: "bg-blue-50",
+    accentText: "text-blue-700"
+  }
 ];
 
 export function CoursesSection() {
@@ -37,7 +70,7 @@ export function CoursesSection() {
               <span className="text-gradient">Path to Success</span>
             </h2>
             <p className="mt-4 text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-              From Class 9 foundations to JEE Advanced preparation — tailored programs for every student.
+              Focused Mathematics &amp; Science coaching for Class 5 to Class 10 WBBSE sections.
             </p>
           </ScrollReveal>
 

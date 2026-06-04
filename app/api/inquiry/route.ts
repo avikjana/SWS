@@ -3,40 +3,79 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, courseId, courseName, message, preferredBatch } = body;
 
-    // Validate required fields
-    if (!name || !phone) {
-      return NextResponse.json(
-        { error: "Name and phone are required" },
-        { status: 400 }
-      );
+    // Check if the Apps Script URL is configured in environment variables
+    const appsScriptUrl = process.env.GOOGLE_SHEET_WEBAPP_URL;
+
+    if (!appsScriptUrl) {
+      console.warn("GOOGLE_SHEET_WEBAPP_URL is not set in environment variables. Falling back to local logging.");
     }
 
-    // In production: send to CRM, email, database
-    console.log("Course inquiry received:", {
-      name,
-      email,
-      phone,
-      courseId,
-      courseName,
-      message,
-      preferredBatch,
-      timestamp: new Date().toISOString(),
-    });
+    // Format fields (convert arrays to comma-separated strings for spreadsheet cells)
+    const formattedData = {
+      timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      studentName: body.studentName || "",
+      class: Array.isArray(body.class) ? body.class.join(", ") : body.class || "",
+      subjectsInterest: body.subjectsInterest || "",
+      coachingMode: body.coachingMode || "",
+      fatherName: body.fatherName || "",
+      motherName: body.motherName || "",
+      gender: body.gender || "",
+      dateOfBirth: body.dateOfBirth || "",
+      religion: body.religion || "",
+      category: Array.isArray(body.category) ? body.category.join(", ") : body.category || "",
+      nationality: body.nationality || "",
+      bloodGroup: body.bloodGroup || "",
+      aadhaarNo: body.aadhaarNo || "",
+      mobileNo: body.mobileNo || "",
+      altMobileNo: body.altMobileNo || "",
+      emailId: body.emailId || "",
+      addressVill: body.addressVill || "",
+      addressPo: body.addressPo || "",
+      addressPs: body.addressPs || "",
+      addressPin: body.addressPin || "",
+      addressDistrict: body.addressDistrict || "",
+      addressState: body.addressState || "",
+      currentClass: Array.isArray(body.currentClass) ? body.currentClass.join(", ") : body.currentClass || "",
+      educationMedium: Array.isArray(body.educationMedium) ? body.educationMedium.join(", ") : body.educationMedium || "",
+      currentSchool: body.currentSchool || "",
+      marksObtained: body.marksObtained || "",
+      marksOutOf: body.marksOutOf || "",
+      referralSource: Array.isArray(body.referralSource) ? body.referralSource.join(", ") : body.referralSource || "",
+      isOldStudent: body.isOldStudent || "",
+      takenCoachingPast: body.takenCoachingPast || "",
+      reasonForJoining: body.reasonForJoining || "",
+      studentSignature: body.studentSignature || "",
+      guardianSignature: body.guardianSignature || "",
+      courseName: body.courseName || "General Admission",
+    };
 
-    // Simulate processing
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    console.log("Saving admission form data:", formattedData);
+
+    // If Apps Script URL is set, send data to Google Sheets
+    if (appsScriptUrl) {
+      const response = await fetch(appsScriptUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formattedData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Google Sheets API responded with status ${response.status}`);
+      }
+    }
 
     return NextResponse.json(
       {
         success: true,
-        message: "Inquiry submitted successfully. A counselor will contact you within 24 hours.",
+        message: "Admission form submitted successfully to Google Sheets.",
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Inquiry API error:", error);
+    console.error("Admission/Inquiry API error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

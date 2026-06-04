@@ -4,14 +4,14 @@ import { Trophy, Users, Brain, Clock, BookOpen, Shield, Zap, Heart } from "lucid
 import { ScrollReveal, StaggerContainer, staggerItem } from "@/components/animations/ScrollReveal";
 
 const features = [
-  { icon: Trophy,   title: "Proven Track Record",     description: "500+ JEE/NEET/WBJEE qualifiers every year. 98% board exam success rate.", cardBg: "bg-[#00F0FF]", textClass: "text-black" },
-  { icon: Brain,    title: "Expert IIT/AIIMS Faculty", description: "Learn from IIT & AIIMS alumni with 10+ years of experience and deep subject expertise.",     cardBg: "bg-[#D2FF00]", textClass: "text-black" },
-  { icon: BookOpen, title: "Comprehensive Material",   description: "Curated notes, practice sheets, mock tests, and chapter-wise PYQ banks (1990-2024).",         cardBg: "bg-[#FF007A]", textClass: "text-white" },
-  { icon: Clock,    title: "Flexible Batch Timings",   description: "Morning, afternoon, and evening batches. Weekend batches also available.",       cardBg: "bg-white", textClass: "text-black" },
-  { icon: Users,    title: "Small Batch Sizes",        description: "Limited batch sizes ensure personalized attention, doubt sessions, and mentoring.", cardBg: "bg-white", textClass: "text-black" },
-  { icon: Zap,      title: "Weekly Tests & Analysis",  description: "Structured weekly tests with detailed performance analysis to identify weak areas.",  cardBg: "bg-[#E6F5EC]", textClass: "text-black" },
-  { icon: Shield,   title: "Money-Back Guarantee",     description: "If not satisfied within the first month, get a full fee refund — no questions asked.",           cardBg: "bg-[#FF6B00]", textClass: "text-white" },
-  { icon: Heart,    title: "Student-First Approach",   description: "24/7 doubt support via WhatsApp, mentor availability, and regular parent meetings.",            cardBg: "bg-white", textClass: "text-black" },
+  { icon: Trophy,   title: "Mathematics & Science",    description: "Highly focused conceptual coaching tailored specifically for Mathematics & Science sections (WBBSE).", cardBg: "bg-[#00F0FF]", textClass: "text-black" },
+  { icon: Brain,    title: "Expert Mentor Support",    description: "Personal mentoring by SUTIRTHA BASUMALLICK. Regular doubt-clearing sessions to build concepts.", cardBg: "bg-[#D2FF00]", textClass: "text-black" },
+  { icon: BookOpen, title: "Comprehensive Notes",     description: "All advanced notes provided via Google Classroom groups (Soft Copy) and Hard Copy format.", cardBg: "bg-[#FF007A]", textClass: "text-white" },
+  { icon: Clock,    title: "Home Personal Tuition",   description: "Offline Home Personal Tuition is also available with us for customized learning pace.", cardBg: "bg-white", textClass: "text-black" },
+  { icon: Users,    title: "Online & Offline Exams",  description: "Regular free mock exams conducted in both online and offline formats to track progress.", cardBg: "bg-white", textClass: "text-black" },
+  { icon: Zap,      title: "Chapter Wise Tests",      description: "Frequent chapter-wise test facilities to ensure complete mastery of each topic before moving ahead.", cardBg: "bg-[#E6F5EC]", textClass: "text-black" },
+  { icon: Shield,   title: "WBBSE Orientation",       description: "Custom curriculum designed exactly around the WBBSE syllabus for Class 5 to Class 10.", cardBg: "bg-[#FF6B00]", textClass: "text-white" },
+  { icon: Heart,    title: "Always Available 24 Hours",description: "We are always available 24 hours for you. Ask doubts and get support anytime you need.", cardBg: "bg-white", textClass: "text-black" },
 ];
 
 export function WhyChooseUs() {
@@ -23,7 +23,7 @@ export function WhyChooseUs() {
         <ScrollReveal className="text-center mb-14">
           <div className="section-tag mx-auto">
             <Trophy className="w-3.5 h-3.5" />
-            Why Choose Xaurum Academy
+            Why Choose Study With Sutirtha
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold font-display text-black mt-4">
             Built for{" "}
@@ -61,7 +61,7 @@ export function WhyChooseUs() {
               ))}
             </div>
             <span className="text-sm font-extrabold text-black">
-              Join <span className="underline decoration-2">5,000+ students</span> already enrolled
+              Unlock academic success with expert conceptual coaching
             </span>
           </div>
         </ScrollReveal>

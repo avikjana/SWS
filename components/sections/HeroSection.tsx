@@ -6,9 +6,9 @@ import { ArrowRight, Play, Star, Users, Award, BookOpen, CheckCircle } from "luc
 import { InquiryModal } from "@/features/InquiryModal";
 
 const trustPoints = [
-  "IIT & AIIMS Alumni Faculty",
-  "Small Batch Sizes (≤30 Students)",
-  "30-Day Money-Back Guarantee",
+  "Mentor: SUTIRTHA BASUMALLICK",
+  "Math & Science Sections Only (WBBSE)",
+  "Online & Offline + Home Tuition",
 ];
 
 export function HeroSection() {
@@ -40,7 +40,7 @@ export function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
-                Admissions Open – Session 2025-26
+                Admissions Open – Session 2026-27
                 <ArrowRight className="w-3.5 h-3.5" />
               </motion.div>
 
@@ -51,10 +51,10 @@ export function HeroSection() {
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="text-5xl sm:text-6xl md:text-7xl font-extrabold font-display tracking-tight text-black leading-[1.05] mb-6"
               >
-                Building India's
+                Where Dreams
                 <br />
                 <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                  Next Top Rankers
+                  Meet Success
                 </span>
               </motion.h1>
 
@@ -65,7 +65,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.25 }}
                 className="text-lg md:text-xl text-[var(--text-secondary)] font-medium leading-relaxed mb-10 max-w-xl"
               >
-                West Bengal's premier coaching academy for <strong className="text-black font-extrabold">JEE, NEET, WBJEE,</strong> and <strong className="text-black font-extrabold">Board Exams</strong>. Learn from IIT &amp; AIIMS alumni.
+                Welcome to <strong className="text-black font-extrabold">Study With Sutirtha Coaching Center</strong>. Premier guidance for <strong className="text-black font-extrabold">Class 5 to Class 10 WBBSE</strong> students, specializing in Mathematics &amp; Science sections. Online &amp; Offline classes available.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -89,7 +89,7 @@ export function HeroSection() {
                   id="hero-demo-btn"
                 >
                   <Play className="w-4 h-4 fill-current" />
-                  Book Free Demo
+                  Contact Us Now
                 </Link>
               </motion.div>
 

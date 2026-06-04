@@ -10,21 +10,16 @@ export const metadata: Metadata = {
 };
 
 const milestones = [
-  { year: "2009", title: "Founded", desc: "Study With Sutirtha started with just 20 students and 3 faculty members." },
-  { year: "2012", title: "First JEE Topper", desc: "Our first student cracked JEE Advanced, AIR 450." },
-  { year: "2015", title: "Expanded Campus", desc: "Moved to our current state-of-the-art 8000 sq.ft campus." },
-  { year: "2018", title: "1000+ Alumni", desc: "Crossed the milestone of 1000 successful alumni." },
-  { year: "2021", title: "Online Programs", desc: "Launched hybrid online-offline learning during the pandemic." },
-  { year: "2024", title: "5000+ Students", desc: "Enrolled over 5000 students with 98% board exam success rate." },
+  { year: "2009", title: "Founded", desc: "Study With Sutirtha started under mentor Sutirtha Basumallick to focus on deep conceptual education." },
+  { year: "2015", title: "Personal Tuition Expansion", desc: "Introduced offline Home Personal Tuition option for customized student progress." },
+  { year: "2021", title: "Online Programs", desc: "Launched online classrooms and exams to reach students digitally." },
 ];
 
 const infrastructure = [
-  { icon: "🏛️", title: "8000 sq.ft Modern Campus", desc: "Spacious, well-lit classrooms with ergonomic seating" },
-  { icon: "🖥️", title: "Digital Smart Boards", desc: "All classrooms equipped with interactive digital boards" },
-  { icon: "📚", title: "Resource Library", desc: "10,000+ books, journals, and study materials" },
-  { icon: "🔬", title: "Science Labs", desc: "Fully equipped Chemistry and Physics lab for hands-on learning" },
-  { icon: "💻", title: "Computer Lab", desc: "50-seat computer lab for programming and online tests" },
-  { icon: "🎯", title: "Test Hall", desc: "Dedicated exam hall for mock tests in real exam conditions" },
+  { icon: "🏛️", title: "Interactive Coaching Space", desc: "Spacious and focused classroom environment designed for active learning." },
+  { icon: "🖥️", title: "Google Classroom Notes", desc: "All advanced notes accessible digitally via Google Classroom groups." },
+  { icon: "📚", title: "Mathematics & Science Resources", desc: "Curated books, sample papers, and customized practice worksheets." },
+  { icon: "🎯", title: "Regular Testing Facilities", desc: "Chapter-wise and full syllabus tests conducted regularly in online/offline modes." },
 ];
 
 export default function AboutPage() {
@@ -48,9 +43,9 @@ export default function AboutPage() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] font-medium max-w-3xl mx-auto leading-relaxed mt-4">
-                For over 15 years, Study With Sutirtha has been the cornerstone of academic excellence in West Bengal.
-                Founded in 2009 with a simple mission — <strong className="text-black font-extrabold">make world-class education accessible to every student</strong> —
-                we have grown from a small tutoring center to one of the most trusted coaching institutions in the region.
+                For over 15 years, Study With Sutirtha has been the cornerstone of academic excellence.
+                Founded in 2009 with a simple mission — <strong className="text-black font-extrabold">make high-quality Mathematics &amp; Science coaching accessible to every child</strong> —
+                we specialize in teaching Class 5 to Class 10 WBBSE sections with dedicated online and offline services.
               </p>
             </ScrollReveal>
           </div>
@@ -163,28 +158,28 @@ export default function AboutPage() {
                   <h3 className="text-xl font-extrabold font-display text-black">Study With Sutirtha</h3>
                   <div className="flex items-start gap-3 text-[var(--text-secondary)]">
                     <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="font-semibold text-black">123, Education Hub, Near City College,<br />Kolkata, West Bengal – 700001</p>
+                    <p className="font-semibold text-black">Choutaramore, Gopinagar,<br />Hooghly, West Bengal - 712402</p>
                   </div>
                   <div className="flex items-center gap-3 text-[var(--text-secondary)]">
                     <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                    <a href="tel:+919800000000" className="hover:text-blue-600 font-bold transition-colors">+91 98000 00000</a>
+                    <a href="tel:+919064077914" className="hover:text-blue-600 font-bold transition-colors">+91 90640 77914</a>
                   </div>
                   <div className="flex items-center gap-3 text-[var(--text-secondary)]">
                     <Users className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                    <span className="font-semibold text-black">Mon – Sat: 9:00 AM – 7:00 PM</span>
+                    <span className="font-semibold text-black">Mentor: SUTIRTHA BASUMALLICK</span>
                   </div>
                   <a href="/contact" className="btn-primary w-full justify-center mt-4" id="about-contact-cta">
-                    Book a Campus Visit
+                    Contact Us Now
                   </a>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal direction="right">
                 <div className="rounded-2xl overflow-hidden border-2 border-black h-80 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
-                  <div className="text-center text-[var(--text-muted)]">
+                  <div className="text-center text-[var(--text-muted)] p-6">
                     <MapPin className="w-16 h-16 mx-auto mb-4 text-blue-600" />
-                    <p className="font-extrabold text-black">Google Maps Embed</p>
-                    <p className="text-sm mt-1">Configure with your Google Maps API key</p>
+                    <p className="font-extrabold text-black">Choutaramore, Gopinagar, Hooghly</p>
+                    <p className="text-sm mt-1">Visit us for offline classes or call to arrange home tuition</p>
                   </div>
                 </div>
               </ScrollReveal>

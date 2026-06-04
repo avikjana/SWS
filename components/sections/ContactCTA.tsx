@@ -48,7 +48,7 @@ export function ContactCTA() {
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <a
-                    href="https://wa.me/919800000000?text=Hi! I'm interested in enrolling at Study With Sutirtha. Please share details."
+                    href="https://wa.me/919064077914?text=Hi! I'm interested in enrolling at Study With Sutirtha. Please share details."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-emerald-900/25"
@@ -61,14 +61,14 @@ export function ContactCTA() {
 
                 {/* Contact Info Row */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-slate-400 text-sm">
-                  <a href="tel:+919800000000" className="flex items-center gap-2 hover:text-white transition-colors" id="cta-phone-link">
+                  <a href="tel:+919064077914" className="flex items-center gap-2 hover:text-white transition-colors" id="cta-phone-link">
                     <Phone className="w-4 h-4 text-blue-400" />
-                    +91 98000 00000
+                    +91 90640 77914
                   </a>
                   <div className="hidden md:block w-px h-4 bg-white/10" />
-                  <a href="mailto:info@xaurumacademy.com" className="flex items-center gap-2 hover:text-white transition-colors" id="cta-email-link">
+                  <a href="mailto:studywithsutirtha@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors" id="cta-email-link">
                     <Mail className="w-4 h-4 text-blue-400" />
-                    info@xaurumacademy.com
+                    studywithsutirtha@gmail.com
                   </a>
                   <div className="hidden md:block w-px h-4 bg-white/10" />
                   <span>Mon – Sat: 9AM – 7PM</span>
