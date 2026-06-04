@@ -24,16 +24,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://studywithsutirtha.com"),
   title: {
-    default: "Study With Sutirtha – Shape Your Future With Excellence",
+    default: "Study With Sutirtha – Mathematics & Science Coaching",
     template: "%s | Study With Sutirtha",
   },
   description:
-    "Study With Sutirtha is a premier coaching center for JEE, NEET, WBJEE, and Board Exams (Class 9-12). Join India's most trusted coaching institute with expert IIT & AIIMS alumni faculty.",
+    "Study With Sutirtha is a premier coaching center for Class 5 to Class 10 Mathematics & Science (WBBSE). Online and offline coaching by Sutirtha Basumallick since 2009.",
   keywords: [
-    "JEE coaching", "NEET coaching", "WBJEE coaching",
-    "class 11 coaching", "class 12 coaching", "board exam preparation",
-    "Study With Sutirtha", "top coaching center", "IIT JEE preparation",
+    "WBBSE coaching", "Mathematics coaching", "Science coaching",
+    "class 5 to 10 coaching", "Study With Sutirtha", "Sutirtha Basumallick",
+    "West Bengal board coaching", "online offline tuition Hooghly",
   ],
   authors: [{ name: "Study With Sutirtha" }],
   creator: "Study With Sutirtha",

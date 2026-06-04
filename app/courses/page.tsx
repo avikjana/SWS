@@ -95,9 +95,9 @@ export default function CoursesPage() {
                 <BookOpen className="w-3.5 h-3.5" />
                 Our Courses
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold font-display text-[var(--text-primary)] mt-4">
+              <h1 className="text-5xl md:text-6xl font-extrabold font-display text-black mt-4">
                 Find Your Perfect{" "}
-                <span className="text-gradient">Course</span>
+                <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Course</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                 Tailored Mathematics &amp; Science coaching for Class 5 to Class 10 WBBSE sections. Online and offline modes available.

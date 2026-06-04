@@ -116,11 +116,11 @@ export function Navbar() {
           {/* Right Actions */}
           <div className="flex items-center gap-3">
             <a href="tel:+919064077914"
-              className="hidden lg:flex items-center gap-1.5 text-sm font-extrabold text-black hover:text-blue-600 transition-colors"
+              className="hidden lg:flex items-center justify-center w-9 h-9 rounded-full border-2 border-black bg-white hover:bg-[#00F0FF] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
               id="nav-phone"
+              title="Call us: +91 90640 77914"
             >
-              <Phone className="w-4 h-4 text-blue-600" />
-              +91 90640 77914
+              <Phone className="w-4 h-4 text-black" />
             </a>
             <Link href="/enroll" className="hidden md:flex btn-primary text-sm py-2 px-5" id="nav-enroll-cta">
               <Sparkles className="w-3.5 h-3.5" />

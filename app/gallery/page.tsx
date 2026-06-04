@@ -45,9 +45,9 @@ export default function GalleryPage() {
                 <Camera className="w-3.5 h-3.5" />
                 Gallery
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold font-display text-[var(--text-primary)] mt-4">
+              <h1 className="text-5xl md:text-6xl font-extrabold font-display text-black mt-4">
                 Life at{" "}
-                <span className="text-gradient">Study With Sutirtha</span>
+                <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Study With Sutirtha</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                 Glimpses of our vibrant campus, inspiring events, and the memorable moments that define our academy.
