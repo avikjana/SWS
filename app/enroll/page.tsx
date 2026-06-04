@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, Send, CheckCircle, ArrowLeft, ArrowRight, Phone, Mail, MapPin, Calendar, Sparkles } from "lucide-react";
-import Link from "next/view-transitions" // Or standard next/link
-import LinkNext from "next/link";
+import Link from "next/link";
 import { BackToTop } from "@/components/ui/BackToTop";
 
 export default function EnrollPage() {
