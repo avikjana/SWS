@@ -1,6 +1,14 @@
 // Central TypeScript type definitions for Study With Sutirtha
 
-// Sanity type definitions removed
+export interface SanitySlug {
+  current: string;
+}
+
+export interface SanityImage {
+  asset: {
+    _ref: string;
+  };
+}
 
 // ===== Course =====
 export type CourseCategory =
