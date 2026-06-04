@@ -10,6 +10,7 @@ interface ScrollRevealProps {
   once?: boolean;
   className?: string;
   threshold?: number;
+  id?: string;
 }
 
 export function ScrollReveal({
@@ -20,6 +21,7 @@ export function ScrollReveal({
   once = true,
   className = "",
   threshold = 0.15,
+  id,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once, amount: threshold });
@@ -51,6 +53,7 @@ export function ScrollReveal({
 
   return (
     <motion.div
+      id={id}
       ref={ref}
       variants={variants}
       initial="hidden"

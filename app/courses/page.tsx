@@ -110,8 +110,8 @@ export default function CoursesPage() {
         <section className="section-padding bg-[var(--bg-secondary)]">
           <div className="container-xl space-y-10">
             {courses.map((course, i) => (
-              <ScrollReveal key={course.id} delay={i * 0.05}>
-                <div id={course.id} className={`card-premium border border-[var(--border)] ${course.borderColor} overflow-hidden`}>
+              <ScrollReveal key={course.id} delay={i * 0.05} id={course.id}>
+                <div className={`card-premium border border-[var(--border)] ${course.borderColor} overflow-hidden`}>
                   <div className="grid md:grid-cols-3 gap-0">
                     {/* Left: Course Info */}
                     <div className={`md:col-span-2 p-8 bg-gradient-to-br ${course.gradient}`}>
