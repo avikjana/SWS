@@ -182,9 +182,9 @@ export default function EnrollPage() {
                     </p>
                   </div>
                   
-                  <LinkNext href="/" className="btn-primary px-8 py-3.5 inline-block text-center font-bold">
+                  <Link href="/" className="btn-primary px-8 py-3.5 inline-block text-center font-bold">
                     Go Back Home
-                  </LinkNext>
+                  </Link>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
