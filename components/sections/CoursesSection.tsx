@@ -1,11 +1,8 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BookOpen, Clock, Users, ArrowRight, Sparkles, Star, ChevronRight } from "lucide-react";
 import { ScrollReveal, StaggerContainer, staggerItem } from "@/components/animations/ScrollReveal";
-import { InquiryModal } from "@/features/InquiryModal";
-import type { Course } from "@/types";
 
 const fallbackCourses = [
   {
@@ -47,12 +44,30 @@ const fallbackCourses = [
     badgeCls: "badge-blue",
     accentBg: "bg-blue-50",
     accentText: "text-blue-700"
+  },
+  {
+    _id: "3",
+    title: "Computer Science & Coding",
+    category: "computer-science",
+    description: "Build logic, creativity, and computational thinking skills. Includes hands-on Scratch/Python programming, hardware basics, and practical tech project sessions.",
+    duration: "Flexible / Yearly",
+    feesDisplay: "Contact for Fees",
+    features: [
+      "Python & Scratch coding",
+      "Logic & algorithm building",
+      "Interactive coding projects",
+      "Online & offline classes"
+    ],
+    icon: "💻",
+    badge: "Tech Program",
+    isPopular: false,
+    badgeCls: "badge-purple",
+    accentBg: "bg-purple-50",
+    accentText: "text-purple-700"
   }
 ];
 
 export function CoursesSection() {
-  const [selectedCourse, setSelectedCourse] = useState<typeof fallbackCourses[0] | null>(null);
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -118,10 +133,10 @@ export function CoursesSection() {
                   <p className="text-xs text-[var(--text-muted)]">Starting from</p>
                   <p className="text-lg font-bold font-display text-[#2563EB] mb-3">{course.feesDisplay}</p>
                   <div className="flex gap-2">
-                    <button onClick={() => { setSelectedCourse(course); setShowModal(true); }}
-                      className="btn-primary flex-1 text-xs py-2.5 justify-center" id={`course-enroll-${course._id}`}>
-                      <Sparkles className="w-3.5 h-3.5" /> Enroll
-                    </button>
+                    <Link href="/enroll"
+                      className="btn-primary flex-grow text-xs py-2.5 justify-center flex items-center gap-1.5" id={`course-enroll-${course._id}`}>
+                      <Sparkles className="w-3.5 h-3.5" /> Enroll Now
+                    </Link>
                     <Link href={`/courses#${course.category}`}
                       className="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)] hover:border-[#2563EB] hover:text-[#2563EB] text-[var(--text-muted)] transition-all"
                       id={`course-details-${course._id}`} aria-label="View details">
@@ -140,9 +155,6 @@ export function CoursesSection() {
           </ScrollReveal>
         </div>
       </section>
-
-      <InquiryModal isOpen={showModal} onClose={() => { setShowModal(false); setSelectedCourse(null); }}
-        course={selectedCourse as unknown as Course} />
     </>
   );
 }

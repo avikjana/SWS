@@ -1,9 +1,7 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Star, Users, Award, BookOpen, CheckCircle } from "lucide-react";
-import { InquiryModal } from "@/features/InquiryModal";
 
 const trustPoints = [
   "Mentor: SUTIRTHA BASUMALLICK",
@@ -12,7 +10,6 @@ const trustPoints = [
 ];
 
 export function HeroSection() {
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -75,14 +72,14 @@ export function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10 w-full sm:w-auto"
               >
-                <button
-                  onClick={() => setShowModal(true)}
+                <Link
+                  href="/enroll"
                   className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2"
                   id="hero-enroll-btn"
                 >
                   Start Your Journey
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </Link>
                 <Link
                   href="/contact"
                   className="btn-secondary text-base px-8 py-4 flex items-center justify-center gap-2"
@@ -194,8 +191,6 @@ export function HeroSection() {
           </div>
         </div>
       </section>
-
-      <InquiryModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
   );
 }

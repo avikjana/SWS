@@ -14,6 +14,7 @@ const navItems = [
     children: [
       { label: "Class 5-8 Foundation", href: "/courses#class-5-8" },
       { label: "Class 9-10 WBBSE Prep", href: "/courses#class-9-10" },
+      { label: "Computer Science & Coding", href: "/courses#computer-science" },
     ],
   },
   { label: "Faculty", href: "/faculty" },
@@ -121,7 +122,7 @@ export function Navbar() {
               <Phone className="w-4 h-4 text-blue-600" />
               +91 90640 77914
             </a>
-            <Link href="/courses" className="hidden md:flex btn-primary text-sm py-2 px-5" id="nav-enroll-cta">
+            <Link href="/enroll" className="hidden md:flex btn-primary text-sm py-2 px-5" id="nav-enroll-cta">
               <Sparkles className="w-3.5 h-3.5" />
               Enroll Now
             </Link>
@@ -187,7 +188,7 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="mt-8 space-y-4">
-                  <Link href="/courses" className="btn-primary w-full justify-center text-center py-3.5" onClick={() => setMobileOpen(false)} id="mobile-enroll-cta">
+                  <Link href="/enroll" className="btn-primary w-full justify-center text-center py-3.5" onClick={() => setMobileOpen(false)} id="mobile-enroll-cta">
                     <Sparkles className="w-4 h-4" /> Enroll Now
                   </Link>
                   <a href="tel:+919064077914" className="btn-secondary w-full justify-center text-center py-3.5" id="mobile-call-cta">

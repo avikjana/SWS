@@ -1,9 +1,8 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { BookOpen, Clock, Users, CheckCircle, Star, ArrowRight, Sparkles } from "lucide-react";
 import { ScrollReveal, StaggerContainer, staggerItem } from "@/components/animations/ScrollReveal";
-import { InquiryModal } from "@/features/InquiryModal";
 import { BackToTop } from "@/components/ui/BackToTop";
 
 const courses = [
@@ -55,12 +54,34 @@ const courses = [
     badge: "WBBSE Program",
     badgeClass: "badge-blue",
     isPopular: true,
+  },
+  {
+    id: "computer-science",
+    title: "Computer Science & Programming",
+    subtitle: "Coding, Logic, & Digital Literacy Foundation",
+    description: "Introduction to computational thinking, programming basics (Python, Scratch, C/C++), and computer science fundamentals. Perfect for Class 5 to 10 students looking to build high-demand future tech skills.",
+    duration: "Flexible / Yearly",
+    feesDisplay: "Contact for Pricing",
+    icon: "💻",
+    gradient: "from-purple-500/20 to-indigo-500/10",
+    borderColor: "hover:border-purple-500/30",
+    features: [
+      "Introduction to Python, Scratch, or C/C++ programming",
+      "Logic building, algorithm fundamentals, & flowcharting",
+      "Practical coding projects & interactive learning sessions",
+      "Computer architecture basics, digital literacy, and theory",
+      "Special doubt-clearing sessions and hands-on guidance",
+      "Weekly computer lab practice (Online/Offline support)",
+    ],
+    subjects: ["Computational Logic", "Python Programming", "Scratch Coding", "Basic Computers"],
+    batches: ["Weekend Batches", "After-School Sessions", "Online/Offline Practice"],
+    badge: "Tech Program",
+    badgeClass: "badge-purple",
+    isPopular: false,
   }
 ];
 
 export default function CoursesPage() {
-  const [selectedCourse, setSelectedCourse] = useState<typeof courses[0] | null>(null);
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -158,22 +179,22 @@ export default function CoursesPage() {
                       <div className="mt-auto pt-6 border-t border-[var(--border)]">
                         <p className="text-xs text-[var(--text-muted)]">Starting from</p>
                         <p className="text-2xl font-bold font-display text-gradient-blue mb-4">{course.feesDisplay}</p>
-                        <button
-                          onClick={() => { setSelectedCourse(course); setShowModal(true); }}
-                          className="btn-primary w-full justify-center"
+                        <Link
+                          href="/enroll"
+                          className="btn-primary w-full justify-center flex items-center gap-1.5"
                           id={`enroll-${course.id}`}
                         >
                           <Sparkles className="w-4 h-4" />
                           Enroll Now
-                        </button>
-                        <button
-                          onClick={() => { setSelectedCourse(course); setShowModal(true); }}
-                          className="btn-secondary w-full justify-center mt-2 text-sm"
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="btn-secondary w-full justify-center mt-2 text-sm flex items-center gap-1.5"
                           id={`inquiry-${course.id}`}
                         >
                           Ask a Question
                           <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -184,11 +205,6 @@ export default function CoursesPage() {
         </section>
       </main>
 
-      <InquiryModal
-        isOpen={showModal}
-        onClose={() => { setShowModal(false); setSelectedCourse(null); }}
-        course={selectedCourse as any}
-      />
       <BackToTop />
     </>
   );

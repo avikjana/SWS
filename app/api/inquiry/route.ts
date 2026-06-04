@@ -14,6 +14,9 @@ export async function POST(request: NextRequest) {
     // Format fields (convert arrays to comma-separated strings for spreadsheet cells)
     const formattedData = {
       timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      dateOfAdmission: body.dateOfAdmission || "",
+      registrationNo: body.registrationNo || "",
+      studentPhoto: body.studentPhoto || "",
       studentName: body.studentName || "",
       class: Array.isArray(body.class) ? body.class.join(", ") : body.class || "",
       subjectsInterest: body.subjectsInterest || "",
@@ -47,23 +50,29 @@ export async function POST(request: NextRequest) {
       reasonForJoining: body.reasonForJoining || "",
       studentSignature: body.studentSignature || "",
       guardianSignature: body.guardianSignature || "",
+      mentorSignature: body.mentorSignature || "",
+      mentorSignatureDate: body.mentorSignatureDate || "",
       courseName: body.courseName || "General Admission",
     };
 
     console.log("Saving admission form data:", formattedData);
 
     // If Apps Script URL is set, send data to Google Sheets
-    if (appsScriptUrl) {
-      const response = await fetch(appsScriptUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formattedData),
-      });
+    if (appsScriptUrl && !appsScriptUrl.includes("xxxxxxxxxxxxxxxxx")) {
+      try {
+        const response = await fetch(appsScriptUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formattedData),
+        });
 
-      if (!response.ok) {
-        throw new Error(`Google Sheets API responded with status ${response.status}`);
+        if (!response.ok) {
+          console.error(`Google Sheets API responded with status ${response.status}`);
+        }
+      } catch (e) {
+        console.error("Failed to connect to Google Sheets Webapp:", e);
       }
     }
 

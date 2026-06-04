@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { AnimatedCounter } from "@/features/Counter";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { TrendingUp } from "lucide-react";
@@ -58,7 +59,7 @@ export function StatsSection() {
               </p>
               <p className="text-white/80 font-semibold mb-8 max-w-md mx-auto">Start your preparation today. Contact us for any offline or online coaching inquiry.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="/contact" className="btn-primary text-base px-8 py-4" id="stats-enroll-cta">Enroll Today</a>
+                <Link href="/enroll" className="btn-primary text-base px-8 py-4" id="stats-enroll-cta">Enroll Today</Link>
                 <a href="tel:+919064077914" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white text-white font-extrabold hover:bg-white/10 active:translate-y-[1px] transition-all" id="stats-call-cta">
                   Call: +91 90640 77914
                 </a>

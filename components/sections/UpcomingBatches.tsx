@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Calendar, Clock, Users, MapPin, Zap } from "lucide-react";
 import { ScrollReveal, StaggerContainer, staggerItem } from "@/components/animations/ScrollReveal";
 
@@ -142,13 +143,13 @@ export function UpcomingBatches() {
                     <p className="text-xs text-[var(--text-muted)]">Fee</p>
                     <p className="font-bold font-display text-gradient-blue">{batch.fee}</p>
                   </div>
-                  <a
-                    href="/contact"
+                  <Link
+                    href="/enroll"
                     className="btn-primary text-sm py-2.5 px-5"
                     id={`batch-enroll-${batch.id}`}
                   >
                     Reserve Seat
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             );
