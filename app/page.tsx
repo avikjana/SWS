@@ -12,9 +12,9 @@ import { ContactCTA } from "@/components/sections/ContactCTA";
 import { BackToTop } from "@/components/ui/BackToTop";
 
 export const metadata: Metadata = {
-  title: "Xaurum Academy - Shape Your Future With Excellence",
+  title: "Study With Sutirtha - Shape Your Future With Excellence",
   description:
-    "Join Xaurum Academy — West Bengal's premier coaching institute for JEE, NEET, WBJEE, and Board Exams. Expert IIT & AIIMS faculty, proven results, personalized mentorship.",
+    "Join Study With Sutirtha — West Bengal's premier coaching institute for JEE, NEET, WBJEE, and Board Exams. Expert IIT & AIIMS faculty, proven results, personalized mentorship.",
 };
 
 export default function HomePage() {

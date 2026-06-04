@@ -6,7 +6,7 @@ import { ScrollReveal, StaggerContainer, staggerItem } from "@/components/animat
 
 const faqs = [
   {
-    question: "What exams does Xaurum Academy prepare students for?",
+    question: "What exams does Study With Sutirtha prepare students for?",
     answer: "We offer comprehensive preparation for JEE Main & Advanced, NEET, WBJEE, WBCHSE, WBBSE, CBSE Board Exams (Class 9-12), and Computer Science programming courses. Our curriculum is designed by IIT and AIIMS alumni.",
   },
   {

@@ -15,7 +15,7 @@ const faculty = [
     achievements: ["Physics Gold Medal, IIT KGP 2003", "Best Faculty Award 2018", "100+ JEE Advanced selections"],
     isHead: true,
     avatarBg: "from-blue-600 to-indigo-700",
-    socialLinks: { linkedin: "#", email: "rajesh@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "rajesh@studywithsutirtha.com" },
   },
   {
     name: "Prof. Sunita Sharma",
@@ -27,7 +27,7 @@ const faculty = [
     achievements: ["Mathematics Gold Medal, IIT Delhi 2008", "200+ students scored 100 in Math boards", "JEE Top Ranker mentor"],
     isHead: false,
     avatarBg: "from-purple-600 to-violet-700",
-    socialLinks: { linkedin: "#", email: "sunita@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "sunita@studywithsutirtha.com" },
   },
   {
     name: "Dr. Amit Ghosh",
@@ -39,7 +39,7 @@ const faculty = [
     achievements: ["Ph.D in Organic Chemistry 2012", "150+ NEET Chemistry selections", "Authored 'Organic Chemistry Decoded'"],
     isHead: false,
     avatarBg: "from-green-600 to-emerald-700",
-    socialLinks: { linkedin: "#", email: "amit@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "amit@studywithsutirtha.com" },
   },
   {
     name: "Dr. Priya Das",
@@ -51,7 +51,7 @@ const faculty = [
     achievements: ["MBBS from AIIMS Delhi", "100+ NEET qualifiers under mentorship", "NEET Biology specialist"],
     isHead: false,
     avatarBg: "from-rose-600 to-pink-700",
-    socialLinks: { linkedin: "#", email: "priya@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "priya@studywithsutirtha.com" },
   },
   {
     name: "Mr. Sourav Banerjee",
@@ -63,7 +63,7 @@ const faculty = [
     achievements: ["M.A English, Presidency University", "98% average in English boards", "Communication skills trainer"],
     isHead: false,
     avatarBg: "from-amber-600 to-yellow-600",
-    socialLinks: { linkedin: "#", email: "sourav@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "sourav@studywithsutirtha.com" },
   },
   {
     name: "Ms. Tanya Roy",
@@ -75,7 +75,7 @@ const faculty = [
     achievements: ["CA All India Rank 45", "95% average in Accountancy", "CA Foundation mentor"],
     isHead: false,
     avatarBg: "from-cyan-600 to-teal-700",
-    socialLinks: { linkedin: "#", email: "tanya@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "tanya@studywithsutirtha.com" },
   },
   {
     name: "Mr. Arpit Gupta",
@@ -83,11 +83,11 @@ const faculty = [
     qualification: "B.Tech CSE, IIT Guwahati | Ex-Google Engineer",
     experience: 6,
     subjects: ["Python", "C++", "Data Structures", "Web Development"],
-    bio: "Mr. Arpit Gupta is an IIT Guwahati alumnus and former Google Software Engineer. He founded the CS program at Xaurum Academy to prepare students for FAANG-level careers. His teaching combines industry experience with academic rigor.",
+    bio: "Mr. Arpit Gupta is an IIT Guwahati alumnus and former Google Software Engineer. He founded the CS program at Study With Sutirtha to prepare students for FAANG-level careers. His teaching combines industry experience with academic rigor.",
     achievements: ["B.Tech IIT Guwahati", "Ex-Google Software Engineer", "Competitive programming coach"],
     isHead: false,
     avatarBg: "from-indigo-600 to-blue-700",
-    socialLinks: { linkedin: "#", email: "arpit@xaurumacademy.com", twitter: "#" },
+    socialLinks: { linkedin: "#", email: "arpit@studywithsutirtha.com", twitter: "#" },
   },
   {
     name: "Mr. Debashis Sen",
@@ -99,7 +99,7 @@ const faculty = [
     achievements: ["Top 100 WBJEE mentors in WB", "Average WBJEE Math score: 85+", "9 years WBJEE expertise"],
     isHead: false,
     avatarBg: "from-sky-600 to-cyan-700",
-    socialLinks: { linkedin: "#", email: "debashis@xaurumacademy.com" },
+    socialLinks: { linkedin: "#", email: "debashis@studywithsutirtha.com" },
   },
 ];
 
@@ -212,7 +212,7 @@ export default function FacultyPage() {
                 <p className="text-[var(--text-secondary)] mb-6">
                   We are always looking for passionate educators who want to shape the next generation. If you have expertise in your subject and a love for teaching, we&apos;d love to hear from you.
                 </p>
-                <a href="mailto:careers@xaurumacademy.com" className="btn-primary px-8 py-3.5 inline-flex items-center gap-2" id="faculty-careers-cta">
+                <a href="mailto:careers@studywithsutirtha.com" className="btn-primary px-8 py-3.5 inline-flex items-center gap-2" id="faculty-careers-cta">
                   <Mail className="w-4 h-4" />
                   Apply to Teach
                 </a>

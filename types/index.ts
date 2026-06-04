@@ -1,4 +1,4 @@
-// Central TypeScript type definitions for Xaurum Academy
+// Central TypeScript type definitions for Study With Sutirtha
 
 // ===== Sanity Base =====
 export interface SanityImage {

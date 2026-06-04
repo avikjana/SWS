@@ -38,7 +38,7 @@ const posts = [
   {
     id: "3",
     title: "From 60% to 98%: Sneha's Incredible WBCHSE Journey",
-    excerpt: "How Class 11 student Sneha Paul transformed her study habits and went from average to topper in just 18 months at Xaurum Academy.",
+    excerpt: "How Class 11 student Sneha Paul transformed her study habits and went from average to topper in just 18 months at Study With Sutirtha.",
     category: "Success Stories",
     readTime: 6,
     publishedAt: "2024-12-05",
@@ -46,7 +46,7 @@ const posts = [
     tags: ["Success", "WBCHSE", "Motivation"],
     gradient: "from-purple-600/20 to-violet-600/10",
     emoji: "⭐",
-    author: "Xaurum Academy",
+    author: "Study With Sutirtha",
   },
   {
     id: "4",
@@ -123,7 +123,7 @@ export default function BlogPage() {
                 <span className="text-gradient">Inspiration</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
-                Expert tips, exam guides, success stories, and career advice from the Xaurum Academy faculty team.
+                Expert tips, exam guides, success stories, and career advice from the Study With Sutirtha faculty team.
               </p>
             </ScrollReveal>
 

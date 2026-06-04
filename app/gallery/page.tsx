@@ -47,7 +47,7 @@ export default function GalleryPage() {
               </div>
               <h1 className="text-5xl md:text-6xl font-bold font-display text-[var(--text-primary)] mt-4">
                 Life at{" "}
-                <span className="text-gradient">Xaurum Academy</span>
+                <span className="text-gradient">Study With Sutirtha</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                 Glimpses of our vibrant campus, inspiring events, and the memorable moments that define our academy.

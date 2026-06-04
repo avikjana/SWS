@@ -25,30 +25,30 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Xaurum Academy – Shape Your Future With Excellence",
-    template: "%s | Xaurum Academy",
+    default: "Study With Sutirtha – Shape Your Future With Excellence",
+    template: "%s | Study With Sutirtha",
   },
   description:
-    "Xaurum Academy is a premier coaching center for JEE, NEET, WBJEE, and Board Exams (Class 9-12). Join India's most trusted coaching institute with expert IIT & AIIMS alumni faculty.",
+    "Study With Sutirtha is a premier coaching center for JEE, NEET, WBJEE, and Board Exams (Class 9-12). Join India's most trusted coaching institute with expert IIT & AIIMS alumni faculty.",
   keywords: [
     "JEE coaching", "NEET coaching", "WBJEE coaching",
     "class 11 coaching", "class 12 coaching", "board exam preparation",
-    "Xaurum Academy", "top coaching center", "IIT JEE preparation",
+    "Study With Sutirtha", "top coaching center", "IIT JEE preparation",
   ],
-  authors: [{ name: "Xaurum Academy" }],
-  creator: "Xaurum Academy",
+  authors: [{ name: "Study With Sutirtha" }],
+  creator: "Study With Sutirtha",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://xaurumacademy.com",
-    siteName: "Xaurum Academy",
-    title: "Xaurum Academy – Shape Your Future With Excellence",
+    url: "https://studywithsutirtha.com",
+    siteName: "Study With Sutirtha",
+    title: "Study With Sutirtha – Shape Your Future With Excellence",
     description: "Premier coaching center for JEE, NEET, WBJEE, and Board Exams. Expert faculty, proven results.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Xaurum Academy" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Study With Sutirtha" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Xaurum Academy – Shape Your Future With Excellence",
+    title: "Study With Sutirtha – Shape Your Future With Excellence",
     description: "Premier coaching for JEE, NEET, WBJEE, and Board Exams.",
     images: ["/og-image.png"],
   },
@@ -72,8 +72,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
-              name: "Xaurum Academy",
-              url: "https://xaurumacademy.com",
+              name: "Study With Sutirtha",
+              url: "https://studywithsutirtha.com",
               description: "Premier coaching center for JEE, NEET, WBJEE, and Board Exams",
               address: {
                 "@type": "PostalAddress",

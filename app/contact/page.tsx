@@ -179,13 +179,13 @@ export default function ContactPage() {
                         <p className="text-xs text-[var(--text-muted)]">Mon – Sat, 9AM – 7PM</p>
                       </div>
                     </a>
-                    <a href="mailto:info@xaurumacademy.com" className="flex items-center gap-4 group" id="contact-info-email">
+                    <a href="mailto:info@studywithsutirtha.com" className="flex items-center gap-4 group" id="contact-info-email">
                       <div className="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/25 transition-colors">
                         <Mail className="w-5 h-5 text-purple-400" />
                       </div>
                       <div>
                         <p className="text-xs text-[var(--text-muted)]">Email Us</p>
-                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400 transition-colors">info@xaurumacademy.com</p>
+                        <p className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400 transition-colors">info@studywithsutirtha.com</p>
                         <p className="text-xs text-[var(--text-muted)]">We reply within 24 hours</p>
                       </div>
                     </a>
@@ -216,7 +216,7 @@ export default function ContactPage() {
               {/* WhatsApp CTA */}
               <ScrollReveal direction="right" delay={0.15}>
                 <a
-                  href="https://wa.me/919800000000?text=Hi! I want to know more about Xaurum Academy courses and enrollment."
+                  href="https://wa.me/919800000000?text=Hi! I want to know more about Study With Sutirtha courses and enrollment."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-6 card-premium border border-green-500/20 hover:border-green-500/40 group transition-all"

@@ -48,7 +48,7 @@ export function ContactCTA() {
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <a
-                    href="https://wa.me/919800000000?text=Hi! I'm interested in enrolling at Xaurum Academy. Please share details."
+                    href="https://wa.me/919800000000?text=Hi! I'm interested in enrolling at Study With Sutirtha. Please share details."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-emerald-900/25"

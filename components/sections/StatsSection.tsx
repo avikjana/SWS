@@ -14,54 +14,55 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section id="statistics" className="section-padding bg-[#0B0E17] relative overflow-hidden">
+    <section id="statistics" className="section-padding bg-[#0B0E17] border-b-2 border-black relative overflow-hidden">
       {/* Subtle dot pattern */}
       <div className="absolute inset-0 opacity-10"
         style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-      {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
 
       <div className="container-xl relative">
         <ScrollReveal className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12 text-sm font-semibold text-blue-300 mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border-2 border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">
             <TrendingUp className="w-3.5 h-3.5" />
             Our Numbers Speak
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-white mt-2">
+          <h2 className="text-4xl md:text-5xl font-extrabold font-display text-white mt-2">
             Success That{" "}
-            <span className="text-gradient">Inspires</span>
+            <span className="text-[#00F0FF] underline decoration-4 decoration-[#FF007A]">Inspires</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-400 max-w-xl mx-auto">
+          <p className="mt-4 text-lg text-slate-400 max-w-xl mx-auto font-medium">
             Every number represents a student&apos;s dream fulfilled.
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 0.09}
-              className="p-8 text-center rounded-2xl border border-white/8 bg-white/4 hover:bg-white/6 hover:border-blue-500/30 transition-all duration-300"
+              className="p-8 text-center rounded-2xl border-2 border-black bg-white/5 shadow-[4px_4px_0px_0px_rgba(0,240,255,1)] hover:translate-y-[-2px] transition-all duration-200"
             >
-              <div className="text-4xl md:text-5xl font-bold font-display text-white mb-2">
-                <AnimatedCounter end={stat.end} suffix={stat.suffix} label="" duration={2000} className="!text-white" />
+              <div className="text-4xl md:text-5xl font-extrabold font-display text-[#D2FF00] mb-2">
+                <AnimatedCounter end={stat.end} suffix={stat.suffix} label="" duration={2000} className="!text-[#D2FF00]" />
               </div>
-              <p className="text-sm font-semibold text-slate-300 mt-1">{stat.label}</p>
-              <p className="text-xs text-slate-500 mt-1">{stat.description}</p>
+              <p className="text-sm font-extrabold text-white mt-1 uppercase tracking-wider">{stat.label}</p>
+              <p className="text-xs text-slate-400 mt-1">{stat.description}</p>
             </ScrollReveal>
           ))}
         </div>
 
         {/* CTA Banner */}
-        <ScrollReveal delay={0.3} className="mt-14">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-[#2563EB]/20 via-[#1d4ed8]/10 to-[#2563EB]/20 p-10 text-center">
-            <p className="text-2xl md:text-3xl font-bold font-display text-white mb-3">
-              Ready to become our next <span className="text-gradient">success story</span>?
-            </p>
-            <p className="text-slate-400 mb-7">Seats are limited. Secure your spot today.</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="/contact" className="btn-primary px-8 py-3.5 shadow-lg" id="stats-enroll-cta">Enroll Today</a>
-              <a href="tel:+919800000000" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/8 transition-all" id="stats-call-cta">
-                Call: +91 98000 00000
-              </a>
+        <ScrollReveal delay={0.3} className="mt-16">
+          <div className="rounded-3xl border-2 border-black bg-[#2563EB] p-10 text-center shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div className="absolute inset-0 bg-grid opacity-10" />
+            <div className="relative z-10">
+              <p className="text-2xl md:text-4xl font-extrabold font-display text-white mb-3 uppercase tracking-tight">
+                Ready to become our next <span className="text-[#D2FF00]">success story</span>?
+              </p>
+              <p className="text-white/80 font-semibold mb-8 max-w-md mx-auto">Seats are limited. Secure your spot today to start learning with our expert IIT/AIIMS team.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="/contact" className="btn-primary text-base px-8 py-4" id="stats-enroll-cta">Enroll Today</a>
+                <a href="tel:+919800000000" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white text-white font-extrabold hover:bg-white/10 active:translate-y-[1px] transition-all" id="stats-call-cta">
+                  Call: +91 98000 00000
+                </a>
+              </div>
             </div>
           </div>
         </ScrollReveal>

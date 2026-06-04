@@ -4,8 +4,8 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemaTypes";
 
 export default defineConfig({
-  name: "xaurum-academy",
-  title: "Xaurum Academy CMS",
+  name: "study-with-sutirtha",
+  title: "Study With Sutirtha CMS",
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "your-project-id",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   plugins: [structureTool(), visionTool()],

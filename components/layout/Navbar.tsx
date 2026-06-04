@@ -51,7 +51,7 @@ export function Navbar() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "py-3 bg-white/90 backdrop-blur-xl border-b border-[var(--border)] shadow-sm"
+            ? "py-3 bg-white border-b-2 border-black shadow-sm"
             : "py-5 bg-transparent"
         }`}
         id="navbar"
@@ -60,19 +60,19 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group" id="nav-logo">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#0EA5E9] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <GraduationCap className="w-4.5 h-4.5 text-white w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-blue-600 border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] group-hover:translate-y-[-1px] group-hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <GraduationCap className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-base font-bold font-display text-[#0B0E17] tracking-tight">
-                Xaurum <span className="text-[#2563EB]">Academy</span>
+              <span className="text-base font-extrabold font-display text-black tracking-tight uppercase">
+                Study With Sutirtha
               </span>
-              <span className="text-[10px] text-[var(--text-muted)] font-medium tracking-wide">JEE · NEET · WBJEE · Boards</span>
+              <span className="text-[9px] text-black/70 font-bold uppercase tracking-wider mt-0.5">JEE · NEET · WBJEE · Boards</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {navItems.map((item) => (
               <div key={item.label} className="relative"
                 onMouseEnter={() => item.children && setActiveDropdown(item.label)}
@@ -80,10 +80,10 @@ export function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-extrabold border-2 transition-all ${
                     isActive(item.href)
-                      ? "text-[#2563EB] bg-blue-50"
-                      : "text-[#374151] hover:text-[#0B0E17] hover:bg-gray-100"
+                      ? "text-black bg-[#00F0FF] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                      : "text-black border-transparent hover:border-black hover:bg-white"
                   }`}
                   id={`nav-${item.label.toLowerCase()}`}
                 >
@@ -97,15 +97,15 @@ export function Navbar() {
                 <AnimatePresence>
                   {item.children && activeDropdown === item.label && (
                     <motion.div
-                      initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                      transition={{ duration: 0.15, ease: "easeOut" }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl p-2 shadow-lg border border-[var(--border)]"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl p-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                     >
                       {item.children.map((child) => (
                         <Link key={child.label} href={child.href}
-                          className="block px-3.5 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[#2563EB] hover:bg-blue-50 rounded-xl transition-all duration-100 font-medium"
+                          className="block px-3.5 py-2.5 text-xs font-bold text-black hover:text-black hover:bg-[#E6F5EC] border border-transparent hover:border-black rounded-xl transition-all duration-100"
                         >
                           {child.label}
                         </Link>
@@ -120,21 +120,23 @@ export function Navbar() {
           {/* Right Actions */}
           <div className="flex items-center gap-3">
             <a href="tel:+919800000000"
-              className="hidden lg:flex items-center gap-1.5 text-sm font-medium text-[var(--text-secondary)] hover:text-[#2563EB] transition-colors"
+              className="hidden lg:flex items-center gap-1.5 text-sm font-extrabold text-black hover:text-blue-600 transition-colors"
               id="nav-phone"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-4 h-4 text-blue-600" />
               +91 98000 00000
             </a>
-            <Link href="/courses" className="hidden md:flex btn-primary text-sm py-2.5 px-5" id="nav-enroll-cta">
+            <Link href="/courses" className="hidden md:flex btn-primary text-sm py-2 px-5" id="nav-enroll-cta">
               <Sparkles className="w-3.5 h-3.5" />
               Enroll Now
             </Link>
+            
+            {/* Shardeum style Mobile Toggle */}
             <button onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)] bg-white text-[var(--text-secondary)] hover:border-[#2563EB] transition-colors"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl border-2 border-black bg-[#D2FF00] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
               aria-label="Toggle menu" id="mobile-menu-toggle"
             >
-              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {mobileOpen ? <X className="w-5 h-5 stroke-[2.5]" /> : <Menu className="w-5 h-5 stroke-[2.5]" />}
             </button>
           </div>
         </div>
@@ -149,34 +151,36 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-black/30" onClick={() => setMobileOpen(false)} />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="absolute right-0 top-0 bottom-0 w-80 bg-white shadow-2xl overflow-y-auto border-l border-[var(--border)]"
+              transition={{ duration: 0.3 }}
+              className="absolute right-0 top-0 bottom-0 w-80 bg-[var(--bg-primary)] border-l-2 border-black shadow-2xl overflow-y-auto"
             >
-              <div className="p-6 pt-20">
-                <nav className="space-y-1">
+              <div className="p-6 pt-24">
+                <nav className="space-y-2">
                   {navItems.map((item, i) => (
                     <motion.div key={item.label}
                       initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.04 }}
                     >
                       <Link href={item.href}
-                        className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
-                          isActive(item.href) ? "text-[#2563EB] bg-blue-50" : "text-[var(--text-primary)] hover:bg-gray-50"
+                        className={`block px-4 py-3 rounded-xl text-sm font-extrabold border-2 transition-all ${
+                          isActive(item.href)
+                            ? "text-black bg-[#00F0FF] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                            : "text-black border-transparent hover:border-black hover:bg-white"
                         }`}
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.label}
                       </Link>
                       {item.children && (
-                        <div className="ml-4 mt-0.5 space-y-0.5">
+                        <div className="ml-4 mt-1.5 space-y-1 pl-3 border-l-2 border-black">
                           {item.children.map((child) => (
                             <Link key={child.label} href={child.href}
-                              className="block px-4 py-2 text-xs text-[var(--text-muted)] hover:text-[#2563EB] hover:bg-blue-50/60 rounded-lg transition-all font-medium"
+                              className="block px-4 py-2 text-xs font-bold text-black/70 hover:text-black hover:bg-[#E6F5EC] border border-transparent hover:border-black rounded-lg transition-all"
                               onClick={() => setMobileOpen(false)}
                             >
                               {child.label}
@@ -187,11 +191,11 @@ export function Navbar() {
                     </motion.div>
                   ))}
                 </nav>
-                <div className="mt-6 space-y-3">
-                  <Link href="/courses" className="btn-primary w-full justify-center" onClick={() => setMobileOpen(false)} id="mobile-enroll-cta">
+                <div className="mt-8 space-y-4">
+                  <Link href="/courses" className="btn-primary w-full justify-center text-center py-3.5" onClick={() => setMobileOpen(false)} id="mobile-enroll-cta">
                     <Sparkles className="w-4 h-4" /> Enroll Now
                   </Link>
-                  <a href="tel:+919800000000" className="btn-secondary w-full justify-center" id="mobile-call-cta">
+                  <a href="tel:+919800000000" className="btn-secondary w-full justify-center text-center py-3.5" id="mobile-call-cta">
                     <Phone className="w-4 h-4" /> Call Us
                   </a>
                 </div>
