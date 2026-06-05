@@ -34,6 +34,7 @@ const footerLinks = {
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
     { label: "Refund Policy", href: "/refund" },
+    { label: "Admin Portal", href: "/admin/login" },
   ],
 };
 
@@ -265,7 +266,7 @@ export function Footer() {
           <p className="text-xs text-slate-300 font-bold flex items-center justify-center gap-1.5">
             Made with <span className="text-[#FF007A] animate-pulse">❤️</span> by{" "}
             <a
-              href="https://xauramlab.com"
+              href="https://xaurum-lab.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#D2FF00] text-black px-2 py-0.5 rounded-md font-extrabold border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] inline-block hover:translate-y-[-1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"

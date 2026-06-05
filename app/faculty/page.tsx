@@ -21,6 +21,23 @@ const faculty = [
     isHead: true,
     avatarBg: "from-blue-600 to-indigo-700",
     socialLinks: { linkedin: "", email: "studywithsutirtha@gmail.com" },
+  },
+  {
+    name: "Avik Jana",
+    designation: "HOD Computer Science & Programming Mentor",
+    qualification: "Specialist in Computer Programming & Coding",
+    experience: 5,
+    subjects: ["Computer Science", "Coding & Programming", "Logic & Algorithms", "Web Development Fundamentals"],
+    bio: "Avik Jana is the lead Computer Science educator and programming mentor at Study With Sutirtha. He focuses on building strong logical reasoning, algorithmic thinking, and modern programming skills in students to prepare them for the digital-first future.",
+    achievements: [
+      "Designed and launched coding curriculum for students",
+      "Specialist in logical problem solving & coding fundamentals",
+      "Guided students in building interactive software projects",
+      "Active technology mentor and consultant"
+    ],
+    isHead: false,
+    avatarBg: "from-purple-600 to-indigo-700",
+    socialLinks: { linkedin: "https://xaurum-lab.vercel.app/", email: "avikjana212@gmail.com" },
   }
 ];
 
@@ -39,10 +56,10 @@ export default function FacultyPage() {
               </div>
               <h1 className="text-5xl md:text-6xl font-extrabold font-display text-black mt-4">
                 Meet Our{" "}
-                <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Mentor</span>
+                <span className="bg-[#00F0FF] px-3 py-1 border-2 border-black inline-block transform -rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Faculty</span>
               </h1>
               <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
-                Learn directly from Sutirtha Basumallick — specialized mentor for Mathematics &amp; Science (WBBSE).
+                Learn from our expert educators specializing in Mathematics, Science, and Computer Programming.
               </p>
             </ScrollReveal>
           </div>
@@ -51,18 +68,18 @@ export default function FacultyPage() {
         {/* Faculty Grid */}
         <section className="section-padding bg-[var(--bg-secondary)]">
           <div className="container-xl">
-            <StaggerContainer className="flex justify-center" staggerDelay={0.1}>
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center" staggerDelay={0.1}>
               {faculty.map((member) => (
                 <motion.div
                   key={member.name}
                   variants={staggerItem}
-                  className="card-premium border border-[var(--border)] hover:border-blue-500/30 overflow-hidden group max-w-xl w-full"
+                  className="card-premium border border-[var(--border)] hover:border-blue-500/30 overflow-hidden group w-full"
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-5 mb-5">
                       {/* Avatar */}
                       <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${member.avatarBg} flex items-center justify-center text-white font-bold text-2xl flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300`}>
-                        SB
+                        {member.name.split(" ").map(n => n[0]).join("")}
                       </div>
                       <div className="flex-grow min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1">

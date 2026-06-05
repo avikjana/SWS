@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, GraduationCap, Phone, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap, Phone, Sparkles, BookOpen } from "lucide-react";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 
 const navItems = [
@@ -23,6 +23,7 @@ const navItems = [
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+  { label: "Student Portal", href: "/student/login" },
 ];
 
 export function Navbar() {
