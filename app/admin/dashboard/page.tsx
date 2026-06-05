@@ -21,6 +21,7 @@ import {
   X,
   Save,
   Edit3,
+  Upload,
 } from "lucide-react";
 
 interface StudentItem {
@@ -58,6 +59,50 @@ export default function AdminDashboardPage() {
   const [editingNote, setEditingNote] = useState<NoteItem | null>(null);
   const [noteForm, setNoteForm] = useState({ title: "", subject: "", classNum: "5", content: "" });
   const [noteFormLoading, setNoteFormLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadError(null);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to upload file");
+      }
+
+      let embedHtml = "";
+      if (file.type === "application/pdf") {
+        embedHtml = `<iframe src="${data.fileUrl}" width="100%" height="800px" style="border: none;"></iframe>`;
+      } else if (file.type.startsWith("image/")) {
+        embedHtml = `<img src="${data.fileUrl}" alt="${file.name}" style="max-width: 100%; height: auto; border: 2px solid black; border-radius: 8px; box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);" />`;
+      } else {
+        embedHtml = `<a href="${data.fileUrl}" target="_blank" class="text-blue-500 underline">View Uploaded Document (${file.name})</a>`;
+      }
+
+      setNoteForm((prev) => ({
+        ...prev,
+        content: prev.content ? `${prev.content}\n${embedHtml}` : embedHtml,
+      }));
+    } catch (err: any) {
+      setUploadError(err.message || "Something went wrong during upload");
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  };
 
   const fetchData = useCallback(async () => {
     try {
@@ -546,9 +591,36 @@ export default function AdminDashboardPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-extrabold text-white/60 uppercase tracking-wider mb-2">
-                      Content (HTML supported)
-                    </label>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block text-xs font-extrabold text-white/60 uppercase tracking-wider">
+                        Content (HTML supported)
+                      </label>
+                      <label className="flex items-center gap-1.5 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg border border-blue-400 cursor-pointer transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)] select-none">
+                        {uploading ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            Uploading...
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="w-3.5 h-3.5" />
+                            Upload PDF / Image
+                          </>
+                        )}
+                        <input
+                          type="file"
+                          accept="application/pdf,image/*"
+                          onChange={handleFileUpload}
+                          disabled={uploading}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+
+                    {uploadError && (
+                      <p className="text-xs font-bold text-red-400 mb-2">⚠️ {uploadError}</p>
+                    )}
+
                     <textarea
                       value={noteForm.content}
                       onChange={(e) => setNoteForm((prev) => ({ ...prev, content: e.target.value }))}
@@ -557,7 +629,7 @@ export default function AdminDashboardPage() {
                       id="note-form-content"
                     />
                     <p className="text-[10px] text-white/30 mt-1.5 font-medium">
-                      Tip: Use HTML tags like &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, &lt;em&gt; for rich formatting.
+                      Tip: Write HTML content or click <strong>Upload PDF / Image</strong> to automatically generate embeds for your handwritten scan documents.
                     </p>
                   </div>
 
