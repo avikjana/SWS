@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession, getAllNotes, readDb } from "@/lib/db";
+import { getSession, getAllNotes, findStudentById } from "@/lib/db";
 
 // GET — fetch notes for approved students only
 export async function GET(req: NextRequest) {
@@ -9,13 +9,12 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    const session = getSession(token);
+    const session = await getSession(token);
     if (!session || session.role !== "student") {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    const db = readDb();
-    const student = db.students.find((s) => s.id === session.userId);
+    const student = await findStudentById(session.userId);
     if (!student) {
       return NextResponse.json({ error: "Student not found" }, { status: 404 });
     }
@@ -27,7 +26,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const allNotes = getAllNotes();
+    const allNotes = await getAllNotes();
     const notes = allNotes.filter((note) => note.classNum === student.classNum);
     return NextResponse.json({
       notes,

@@ -7,27 +7,27 @@ import {
   deleteNote,
 } from "@/lib/db";
 
-function verifyAdmin(req: NextRequest) {
+async function verifyAdmin(req: NextRequest) {
   const token = req.cookies.get("session_token")?.value;
   if (!token) return null;
-  const session = getSession(token);
+  const session = await getSession(token);
   if (!session || session.role !== "admin") return null;
   return session;
 }
 
 // GET — list all notes
 export async function GET(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const notes = getAllNotes();
+  const notes = await getAllNotes();
   return NextResponse.json({ notes });
 }
 
 // POST — create a note
 export async function POST(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -40,13 +40,13 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const note = createNote(title, subject, classNum, content);
+  const note = await createNote(title, subject, classNum, content);
   return NextResponse.json({ success: true, note });
 }
 
 // PATCH — update a note
 export async function PATCH(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -59,7 +59,7 @@ export async function PATCH(req: NextRequest) {
     );
   }
 
-  const note = updateNote(id, title, subject, classNum, content);
+  const note = await updateNote(id, title, subject, classNum, content);
   if (!note) {
     return NextResponse.json({ error: "Note not found" }, { status: 404 });
   }
@@ -69,7 +69,7 @@ export async function PATCH(req: NextRequest) {
 
 // DELETE — delete a note
 export async function DELETE(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -80,7 +80,7 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "Note id required" }, { status: 400 });
   }
 
-  const deleted = deleteNote(noteId);
+  const deleted = await deleteNote(noteId);
   if (!deleted) {
     return NextResponse.json({ error: "Note not found" }, { status: 404 });
   }

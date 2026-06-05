@@ -18,14 +18,14 @@ export async function POST(req: NextRequest) {
     }
 
     if (role === "admin") {
-      const admin = findAdminByEmail(email);
+      const admin = await findAdminByEmail(email);
       if (!admin || !verifyPassword(password, admin.passwordHash)) {
         return NextResponse.json(
           { error: "Invalid admin credentials" },
           { status: 401 }
         );
       }
-      const session = createSession(admin.id, "admin");
+      const session = await createSession(admin.id, "admin");
       const res = NextResponse.json({
         success: true,
         user: { id: admin.id, name: admin.name, email: admin.email, role: "admin" },
@@ -41,14 +41,14 @@ export async function POST(req: NextRequest) {
     }
 
     if (role === "student") {
-      const student = findStudentByEmail(email);
+      const student = await findStudentByEmail(email);
       if (!student || !verifyPassword(password, student.passwordHash)) {
         return NextResponse.json(
           { error: "Invalid email or password" },
           { status: 401 }
         );
       }
-      const session = createSession(student.id, "student");
+      const session = await createSession(student.id, "student");
       const res = NextResponse.json({
         success: true,
         user: {

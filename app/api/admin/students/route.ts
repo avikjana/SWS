@@ -1,29 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   getSession,
-  readDb,
+  getAllStudents,
   toggleStudentApproval,
   deleteStudent,
 } from "@/lib/db";
 
 // Helper to verify admin session
-function verifyAdmin(req: NextRequest) {
+async function verifyAdmin(req: NextRequest) {
   const token = req.cookies.get("session_token")?.value;
   if (!token) return null;
-  const session = getSession(token);
+  const session = await getSession(token);
   if (!session || session.role !== "admin") return null;
   return session;
 }
 
 // GET — list all students
 export async function GET(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const db = readDb();
-  const students = db.students.map((s) => ({
+  const allStudents = await getAllStudents();
+  const students = allStudents.map((s) => ({
     id: s.id,
     name: s.name,
     email: s.email,
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
 
 // PATCH — toggle student approval
 export async function PATCH(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -50,7 +50,7 @@ export async function PATCH(req: NextRequest) {
     );
   }
 
-  const student = toggleStudentApproval(studentId, isApproved);
+  const student = await toggleStudentApproval(studentId, isApproved);
   if (!student) {
     return NextResponse.json({ error: "Student not found" }, { status: 404 });
   }
@@ -68,7 +68,7 @@ export async function PATCH(req: NextRequest) {
 
 // DELETE — remove a student
 export async function DELETE(req: NextRequest) {
-  const session = verifyAdmin(req);
+  const session = await verifyAdmin(req);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -82,7 +82,7 @@ export async function DELETE(req: NextRequest) {
     );
   }
 
-  const deleted = deleteStudent(studentId);
+  const deleted = await deleteStudent(studentId);
   if (!deleted) {
     return NextResponse.json({ error: "Student not found" }, { status: 404 });
   }

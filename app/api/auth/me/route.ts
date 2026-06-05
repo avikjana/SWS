@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession, readDb } from "@/lib/db";
+import { getSession, findAdminById, findStudentById } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   try {
@@ -8,15 +8,13 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ user: null }, { status: 401 });
     }
 
-    const session = getSession(token);
+    const session = await getSession(token);
     if (!session) {
       return NextResponse.json({ user: null }, { status: 401 });
     }
 
-    const db = readDb();
-
     if (session.role === "admin") {
-      const admin = db.admins.find((a) => a.id === session.userId);
+      const admin = await findAdminById(session.userId);
       if (!admin) {
         return NextResponse.json({ user: null }, { status: 401 });
       }
@@ -31,7 +29,7 @@ export async function GET(req: NextRequest) {
     }
 
     if (session.role === "student") {
-      const student = db.students.find((s) => s.id === session.userId);
+      const student = await findStudentById(session.userId);
       if (!student) {
         return NextResponse.json({ user: null }, { status: 401 });
       }

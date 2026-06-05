@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const existing = findStudentByEmail(email);
+    const existing = await findStudentByEmail(email);
     if (existing) {
       return NextResponse.json(
         { error: "An account with this email already exists" },
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const student = createStudent(name, email, phone, classNum, password);
+    const student = await createStudent(name, email, phone, classNum, password);
 
     return NextResponse.json({
       success: true,
