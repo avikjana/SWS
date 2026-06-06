@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import { MongoClient, Db } from "mongodb";
 import crypto from "crypto";
 
 // ===== Types =====
@@ -54,21 +54,23 @@ export function generateId(): string {
   return crypto.randomBytes(16).toString("hex");
 }
 
-// ===== CockroachDB Connection Pool =====
-const connectionString = process.env.DATABASE_URL || "postgresql://localhost:5432/sws";
+// ===== MongoDB Connection Pool =====
+const uri = process.env.MONGODB_URI;
+if (!uri) {
+  throw new Error("Please define the MONGODB_URI environment variable inside .env");
+}
 
-let pool: Pool;
-let globalWithPg = global as typeof globalThis & {
-  pgPool?: Pool;
+let client: MongoClient;
+let db: Db;
+
+let globalWithMongo = global as typeof globalThis & {
+  mongoClient?: MongoClient;
 };
 
-if (!globalWithPg.pgPool) {
-  globalWithPg.pgPool = new Pool({
-    connectionString,
-    ssl: connectionString.includes("localhost") ? false : { rejectUnauthorized: false },
-  });
+if (!globalWithMongo.mongoClient) {
+  globalWithMongo.mongoClient = new MongoClient(uri);
 }
-pool = globalWithPg.pgPool;
+client = globalWithMongo.mongoClient;
 
 // Initialize Database Tables and Seeding
 let dbInitializedPromise: Promise<void> | null = null;
@@ -78,79 +80,35 @@ export async function initDb(): Promise<void> {
 
   dbInitializedPromise = (async () => {
     try {
-      // Create Students Table
-      await pool.query(`
-        CREATE TABLE IF NOT EXISTS students (
-          id VARCHAR(255) PRIMARY KEY,
-          name VARCHAR(255) NOT NULL,
-          email VARCHAR(255) UNIQUE NOT NULL,
-          phone VARCHAR(255) NOT NULL,
-          classNum VARCHAR(50) NOT NULL,
-          passwordHash VARCHAR(255) NOT NULL,
-          isApproved BOOLEAN DEFAULT FALSE,
-          createdAt TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-        );
-      `);
-
-      // Create Admins Table
-      await pool.query(`
-        CREATE TABLE IF NOT EXISTS admins (
-          id VARCHAR(255) PRIMARY KEY,
-          email VARCHAR(255) UNIQUE NOT NULL,
-          passwordHash VARCHAR(255) NOT NULL,
-          name VARCHAR(255) NOT NULL
-        );
-      `);
-
-      // Create Notes Table
-      await pool.query(`
-        CREATE TABLE IF NOT EXISTS notes (
-          id VARCHAR(255) PRIMARY KEY,
-          title VARCHAR(255) NOT NULL,
-          subject VARCHAR(255) NOT NULL,
-          classNum VARCHAR(50) NOT NULL,
-          content TEXT NOT NULL,
-          createdAt TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          updatedAt TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-        );
-      `);
-
-      // Create Sessions Table
-      await pool.query(`
-        CREATE TABLE IF NOT EXISTS sessions (
-          token VARCHAR(255) PRIMARY KEY,
-          userId VARCHAR(255) NOT NULL,
-          role VARCHAR(50) NOT NULL,
-          expiresAt TIMESTAMP WITH TIME ZONE NOT NULL
-        );
-      `);
+      await client.connect();
+      db = client.db(); // Uses the default database defined in the connection URI (which is 'sws')
 
       // Seed Default Admin
-      const adminRes = await pool.query("SELECT COUNT(*) FROM admins");
-      if (parseInt(adminRes.rows[0].count, 10) === 0) {
-        await pool.query(
-          "INSERT INTO admins (id, email, passwordHash, name) VALUES ($1, $2, $3, $4)",
-          [generateId(), "admin@sws.com", hashPassword("admin123"), "Administrator"]
-        );
+      const adminRes = await db.collection("admins").countDocuments();
+      if (adminRes === 0) {
+        await db.collection("admins").insertOne({
+          _id: generateId(),
+          email: "admin@sws.com",
+          passwordHash: hashPassword("admin123"),
+          name: "Administrator"
+        });
       }
 
       // Seed Default Note
-      const noteRes = await pool.query("SELECT COUNT(*) FROM notes");
-      if (parseInt(noteRes.rows[0].count, 10) === 0) {
-        await pool.query(
-          `INSERT INTO notes (id, title, subject, classNum, content, createdAt, updatedAt) 
-           VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
-          [
-            generateId(),
-            "Welcome to Study With Sutirtha",
-            "General",
-            "5",
-            "<h2>Welcome!</h2><p>Welcome to the student portal. Your study notes and materials will appear here once your account is approved by the admin.</p><p>Stay tuned for upcoming notes on Mathematics, Science, and more!</p>"
-          ]
-        );
+      const noteRes = await db.collection("notes").countDocuments();
+      if (noteRes === 0) {
+        await db.collection("notes").insertOne({
+          _id: generateId(),
+          title: "Welcome to Study With Sutirtha",
+          subject: "General",
+          classNum: "5",
+          content: "<h2>Welcome!</h2><p>Welcome to the student portal. Your study notes and materials will appear here once your account is approved by the admin.</p><p>Stay tuned for upcoming notes on Mathematics, Science, and more!</p>",
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
       }
     } catch (err) {
-      console.error("Error initializing CockroachDB tables:", err);
+      console.error("Error initializing MongoDB connection:", err);
       throw err;
     }
   })();
@@ -158,40 +116,53 @@ export async function initDb(): Promise<void> {
   return dbInitializedPromise;
 }
 
+// ===== Helper Note Finder =====
+async function findNoteById(id: string): Promise<Note | null> {
+  const doc = await db.collection("notes").findOne({ _id: id });
+  if (!doc) return null;
+  return {
+    id: doc._id,
+    title: doc.title,
+    subject: doc.subject,
+    classNum: doc.classNum,
+    content: doc.content,
+    createdAt: doc.createdAt,
+    updatedAt: doc.updatedAt
+  };
+}
+
 // ===== Student Operations =====
 export async function findStudentByEmail(email: string): Promise<Student | undefined> {
   await initDb();
-  const res = await pool.query("SELECT * FROM students WHERE LOWER(email) = $1", [email.toLowerCase()]);
-  if (res.rows.length === 0) return undefined;
+  const doc = await db.collection("students").findOne({ email: email.toLowerCase() });
+  if (!doc) return undefined;
   
-  const row = res.rows[0];
   return {
-    id: row.id,
-    name: row.name,
-    email: row.email,
-    phone: row.phone,
-    classNum: row.classnum,
-    passwordHash: row.passwordhash,
-    isApproved: row.isapproved,
-    createdAt: row.createdat,
+    id: doc._id,
+    name: doc.name,
+    email: doc.email,
+    phone: doc.phone,
+    classNum: doc.classNum,
+    passwordHash: doc.passwordHash,
+    isApproved: doc.isApproved,
+    createdAt: doc.createdAt,
   };
 }
 
 export async function findStudentById(id: string): Promise<Student | undefined> {
   await initDb();
-  const res = await pool.query("SELECT * FROM students WHERE id = $1", [id]);
-  if (res.rows.length === 0) return undefined;
+  const doc = await db.collection("students").findOne({ _id: id });
+  if (!doc) return undefined;
   
-  const row = res.rows[0];
   return {
-    id: row.id,
-    name: row.name,
-    email: row.email,
-    phone: row.phone,
-    classNum: row.classnum,
-    passwordHash: row.passwordhash,
-    isApproved: row.isapproved,
-    createdAt: row.createdat,
+    id: doc._id,
+    name: doc.name,
+    email: doc.email,
+    phone: doc.phone,
+    classNum: doc.classNum,
+    passwordHash: doc.passwordHash,
+    isApproved: doc.isApproved,
+    createdAt: doc.createdAt,
   };
 }
 
@@ -203,8 +174,8 @@ export async function createStudent(
   password: string
 ): Promise<Student> {
   await initDb();
-  const student: Student = {
-    id: generateId(),
+  const student = {
+    _id: generateId(),
     name,
     email: email.toLowerCase(),
     phone,
@@ -214,20 +185,18 @@ export async function createStudent(
     createdAt: new Date().toISOString(),
   };
 
-  await pool.query(
-    "INSERT INTO students (id, name, email, phone, classNum, passwordHash, isApproved, createdAt) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
-    [
-      student.id,
-      student.name,
-      student.email,
-      student.phone,
-      student.classNum,
-      student.passwordHash,
-      student.isApproved,
-      student.createdAt
-    ]
-  );
-  return student;
+  await db.collection("students").insertOne(student);
+  
+  return {
+    id: student._id,
+    name: student.name,
+    email: student.email,
+    phone: student.phone,
+    classNum: student.classNum,
+    passwordHash: student.passwordHash,
+    isApproved: student.isApproved,
+    createdAt: student.createdAt
+  };
 }
 
 export async function toggleStudentApproval(
@@ -235,59 +204,57 @@ export async function toggleStudentApproval(
   isApproved: boolean
 ): Promise<Student | null> {
   await initDb();
-  await pool.query("UPDATE students SET isApproved = $1 WHERE id = $2", [isApproved, studentId]);
+  await db.collection("students").updateOne({ _id: studentId }, { $set: { isApproved } });
   const student = await findStudentById(studentId);
   return student || null;
 }
 
 export async function deleteStudent(studentId: string): Promise<boolean> {
   await initDb();
-  const res = await pool.query("DELETE FROM students WHERE id = $1", [studentId]);
-  await pool.query("DELETE FROM sessions WHERE userId = $1", [studentId]);
-  return (res.rowCount ?? 0) > 0;
+  const res = await db.collection("students").deleteOne({ _id: studentId });
+  await db.collection("sessions").deleteMany({ userId: studentId });
+  return (res.deletedCount ?? 0) > 0;
 }
 
 export async function getAllStudents(): Promise<Student[]> {
   await initDb();
-  const res = await pool.query("SELECT * FROM students ORDER BY createdAt DESC");
-  return res.rows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    email: row.email,
-    phone: row.phone,
-    classNum: row.classnum,
-    passwordHash: row.passwordhash,
-    isApproved: row.isapproved,
-    createdAt: row.createdat,
+  const docs = await db.collection("students").find().sort({ createdAt: -1 }).toArray();
+  return docs.map((doc) => ({
+    id: doc._id,
+    name: doc.name,
+    email: doc.email,
+    phone: doc.phone,
+    classNum: doc.classNum,
+    passwordHash: doc.passwordHash,
+    isApproved: doc.isApproved,
+    createdAt: doc.createdAt,
   }));
 }
 
 // ===== Admin Operations =====
 export async function findAdminByEmail(email: string): Promise<AdminUser | undefined> {
   await initDb();
-  const res = await pool.query("SELECT * FROM admins WHERE LOWER(email) = $1", [email.toLowerCase()]);
-  if (res.rows.length === 0) return undefined;
+  const doc = await db.collection("admins").findOne({ email: email.toLowerCase() });
+  if (!doc) return undefined;
   
-  const row = res.rows[0];
   return {
-    id: row.id,
-    email: row.email,
-    passwordHash: row.passwordhash,
-    name: row.name,
+    id: doc._id,
+    email: doc.email,
+    passwordHash: doc.passwordHash,
+    name: doc.name,
   };
 }
 
 export async function findAdminById(id: string): Promise<AdminUser | undefined> {
   await initDb();
-  const res = await pool.query("SELECT * FROM admins WHERE id = $1", [id]);
-  if (res.rows.length === 0) return undefined;
+  const doc = await db.collection("admins").findOne({ _id: id });
+  if (!doc) return undefined;
   
-  const row = res.rows[0];
   return {
-    id: row.id,
-    email: row.email,
-    passwordHash: row.passwordhash,
-    name: row.name,
+    id: doc._id,
+    email: doc.email,
+    passwordHash: doc.passwordHash,
+    name: doc.name,
   };
 }
 
@@ -297,37 +264,38 @@ export async function createSession(
   role: "student" | "admin"
 ): Promise<Session> {
   await initDb();
-  await pool.query("DELETE FROM sessions WHERE userId = $1", [userId]);
+  await db.collection("sessions").deleteMany({ userId });
   
-  const session: Session = {
-    token: generateToken(),
+  const session = {
+    _id: generateToken(),
     userId,
     role,
     expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
   };
 
-  await pool.query(
-    "INSERT INTO sessions (token, userId, role, expiresAt) VALUES ($1, $2, $3, $4)",
-    [session.token, session.userId, session.role, session.expiresAt]
-  );
-  return session;
+  await db.collection("sessions").insertOne(session);
+  return {
+    token: session._id,
+    userId: session.userId,
+    role: session.role as "student" | "admin",
+    expiresAt: session.expiresAt
+  };
 }
 
 export async function getSession(token: string): Promise<Session | null> {
   await initDb();
-  const res = await pool.query("SELECT * FROM sessions WHERE token = $1", [token]);
-  if (res.rows.length === 0) return null;
+  const doc = await db.collection("sessions").findOne({ _id: token });
+  if (!doc) return null;
   
-  const row = res.rows[0];
   const session: Session = {
-    token: row.token,
-    userId: row.userid,
-    role: row.role,
-    expiresAt: row.expiresat,
+    token: doc._id,
+    userId: doc.userId,
+    role: doc.role,
+    expiresAt: doc.expiresAt,
   };
 
   if (new Date(session.expiresAt) < new Date()) {
-    await pool.query("DELETE FROM sessions WHERE token = $1", [token]);
+    await db.collection("sessions").deleteOne({ _id: token });
     return null;
   }
   return session;
@@ -335,21 +303,21 @@ export async function getSession(token: string): Promise<Session | null> {
 
 export async function deleteSession(token: string): Promise<void> {
   await initDb();
-  await pool.query("DELETE FROM sessions WHERE token = $1", [token]);
+  await db.collection("sessions").deleteOne({ _id: token });
 }
 
 // ===== Notes Operations =====
 export async function getAllNotes(): Promise<Note[]> {
   await initDb();
-  const res = await pool.query("SELECT * FROM notes ORDER BY createdAt DESC");
-  return res.rows.map((row) => ({
-    id: row.id,
-    title: row.title,
-    subject: row.subject,
-    classNum: row.classnum,
-    content: row.content,
-    createdAt: row.createdat,
-    updatedAt: row.updatedat,
+  const docs = await db.collection("notes").find().sort({ createdAt: -1 }).toArray();
+  return docs.map((doc) => ({
+    id: doc._id,
+    title: doc.title,
+    subject: doc.subject,
+    classNum: doc.classNum,
+    content: doc.content,
+    createdAt: doc.createdAt,
+    updatedAt: doc.updatedAt,
   }));
 }
 
@@ -360,8 +328,8 @@ export async function createNote(
   content: string
 ): Promise<Note> {
   await initDb();
-  const note: Note = {
-    id: generateId(),
+  const note = {
+    _id: generateId(),
     title,
     subject,
     classNum,
@@ -370,19 +338,16 @@ export async function createNote(
     updatedAt: new Date().toISOString(),
   };
 
-  await pool.query(
-    "INSERT INTO notes (id, title, subject, classNum, content, createdAt, updatedAt) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-    [
-      note.id,
-      note.title,
-      note.subject,
-      note.classNum,
-      note.content,
-      note.createdAt,
-      note.updatedAt
-    ]
-  );
-  return note;
+  await db.collection("notes").insertOne(note);
+  return {
+    id: note._id,
+    title: note.title,
+    subject: note.subject,
+    classNum: note.classNum,
+    content: note.content,
+    createdAt: note.createdAt,
+    updatedAt: note.updatedAt
+  };
 }
 
 export async function updateNote(
@@ -394,28 +359,17 @@ export async function updateNote(
 ): Promise<Note | null> {
   await initDb();
   const updatedAt = new Date().toISOString();
-  await pool.query(
-    "UPDATE notes SET title = $1, subject = $2, classNum = $3, content = $4, updatedAt = $5 WHERE id = $6",
-    [title, subject, classNum, content, updatedAt, noteId]
+  await db.collection("notes").updateOne(
+    { _id: noteId },
+    { $set: { title, subject, classNum, content, updatedAt } }
   );
   
-  const res = await pool.query("SELECT * FROM notes WHERE id = $1", [noteId]);
-  if (res.rows.length === 0) return null;
-  
-  const row = res.rows[0];
-  return {
-    id: row.id,
-    title: row.title,
-    subject: row.subject,
-    classNum: row.classnum,
-    content: row.content,
-    createdAt: row.createdat,
-    updatedAt: row.updatedat,
-  };
+  return findNoteById(noteId);
 }
 
 export async function deleteNote(noteId: string): Promise<boolean> {
   await initDb();
-  const res = await pool.query("DELETE FROM notes WHERE id = $1", [noteId]);
-  return (res.rowCount ?? 0) > 0;
+  const res = await db.collection("notes").deleteOne({ _id: noteId });
+  return (res.deletedCount ?? 0) > 0;
 }
+
