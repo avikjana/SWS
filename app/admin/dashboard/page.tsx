@@ -85,7 +85,7 @@ export default function AdminDashboardPage() {
 
       let embedHtml = "";
       if (file.type === "application/pdf") {
-        embedHtml = `<iframe src="${data.fileUrl}" width="100%" height="800px" style="border: none;"></iframe>`;
+        embedHtml = `<iframe src="${data.fileUrl}#toolbar=0" width="100%" height="800px" style="border: none;"></iframe>`;
       } else if (file.type.startsWith("image/")) {
         embedHtml = `<img src="${data.fileUrl}" alt="${file.name}" style="max-width: 100%; height: auto; border: 2px solid black; border-radius: 8px; box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);" />`;
       } else {

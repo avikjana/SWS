@@ -83,6 +83,19 @@ export function SecureViewer({ htmlContent, studentEmail, title }: SecureViewerP
     };
   }, []);
 
+  // Enable interaction for iframes (PDFs) and hide native toolbars
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const iframes = containerRef.current.querySelectorAll("iframe");
+    iframes.forEach((iframe) => {
+      iframe.style.pointerEvents = "auto";
+      const src = iframe.getAttribute("src");
+      if (src && src.toLowerCase().includes(".pdf") && !src.includes("#")) {
+        iframe.setAttribute("src", `${src}#toolbar=0`);
+      }
+    });
+  }, [htmlContent]);
+
   // Generate watermark SVG with student email
   const watermarkSvg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="350" height="180">
