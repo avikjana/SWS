@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
-import { StatsSection } from "@/components/sections/StatsSection";
-import { CoursesSection } from "@/components/sections/CoursesSection";
-import { TopRankers } from "@/components/sections/TopRankers";
-import { FacultySection } from "@/components/sections/FacultySection";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { UpcomingBatches } from "@/components/sections/UpcomingBatches";
-import { FAQSection } from "@/components/sections/FAQSection";
-import { ContactCTA } from "@/components/sections/ContactCTA";
-import { BackToTop } from "@/components/ui/BackToTop";
+
+// Lazy load all below-the-fold sections to reduce initial JS bundle
+const WhyChooseUs = dynamic(() => import("@/components/sections/WhyChooseUs").then(m => ({ default: m.WhyChooseUs })));
+const StatsSection = dynamic(() => import("@/components/sections/StatsSection").then(m => ({ default: m.StatsSection })));
+const CoursesSection = dynamic(() => import("@/components/sections/CoursesSection").then(m => ({ default: m.CoursesSection })));
+const TopRankers = dynamic(() => import("@/components/sections/TopRankers").then(m => ({ default: m.TopRankers })));
+const FacultySection = dynamic(() => import("@/components/sections/FacultySection").then(m => ({ default: m.FacultySection })));
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials").then(m => ({ default: m.Testimonials })));
+const UpcomingBatches = dynamic(() => import("@/components/sections/UpcomingBatches").then(m => ({ default: m.UpcomingBatches })));
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection").then(m => ({ default: m.FAQSection })));
+const ContactCTA = dynamic(() => import("@/components/sections/ContactCTA").then(m => ({ default: m.ContactCTA })));
+const BackToTop = dynamic(() => import("@/components/ui/BackToTop").then(m => ({ default: m.BackToTop })));
 
 export const metadata: Metadata = {
   title: "Study With Sutirtha - Shape Your Future With Excellence",

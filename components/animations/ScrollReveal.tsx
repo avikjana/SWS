@@ -17,10 +17,10 @@ export function ScrollReveal({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.6,
+  duration = 0.4,
   once = true,
   className = "",
-  threshold = 0.15,
+  threshold = 0.1,
   id,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -76,7 +76,7 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   delay = 0,
-  staggerDelay = 0.1,
+  staggerDelay = 0.06,
   className = "",
   threshold = 0.1,
 }: StaggerContainerProps) {
@@ -111,6 +111,6 @@ export const staggerItem: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.35, ease: [0.25, 0.4, 0.25, 1] },
   },
 };
