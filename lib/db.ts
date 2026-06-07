@@ -90,6 +90,13 @@ export async function initDb(): Promise<void> {
       db = connectedDb;
       globalWithMongo.mongoDb = connectedDb;
 
+      // Create Indexes for optimized query execution
+      await db.collection("students").createIndex({ email: 1 }, { unique: true });
+      await db.collection("students").createIndex({ createdAt: -1 });
+      await db.collection("admins").createIndex({ email: 1 }, { unique: true });
+      await db.collection("sessions").createIndex({ userId: 1 });
+      await db.collection("notes").createIndex({ createdAt: -1 });
+
       // Seed Default Admin
       const adminRes = await db.collection("admins").countDocuments();
       if (adminRes === 0) {
