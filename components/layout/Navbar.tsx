@@ -23,7 +23,6 @@ const navItems = [
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
-  { label: "Student Portal", href: "/student/login" },
 ];
 
 export function Navbar() {
@@ -116,6 +115,13 @@ export function Navbar() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
+            <Link href="/student/login"
+              className="hidden lg:flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-extrabold border-2 border-black bg-white hover:bg-[#00F0FF] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap"
+              id="nav-student-portal"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Student Portal
+            </Link>
             <a href="tel:+919064077914"
               className="hidden lg:flex items-center justify-center w-9 h-9 rounded-full border-2 border-black bg-white hover:bg-[#00F0FF] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
               id="nav-phone"
@@ -191,6 +197,9 @@ export function Navbar() {
                 <div className="mt-8 space-y-4">
                   <Link href="/enroll" className="btn-primary w-full justify-center text-center py-3.5" onClick={() => setMobileOpen(false)} id="mobile-enroll-cta">
                     <Sparkles className="w-4 h-4" /> Enroll Now
+                  </Link>
+                  <Link href="/student/login" className="btn-secondary w-full justify-center text-center py-3.5" onClick={() => setMobileOpen(false)} id="mobile-student-portal-cta">
+                    <BookOpen className="w-4 h-4" /> Student Portal
                   </Link>
                   <a href="tel:+919064077914" className="btn-secondary w-full justify-center text-center py-3.5" id="mobile-call-cta">
                     <Phone className="w-4 h-4" /> Call Us
