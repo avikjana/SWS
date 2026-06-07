@@ -60,28 +60,35 @@ if (!uri) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env");
 }
 
-let client: MongoClient;
-let db: Db;
-
 let globalWithMongo = global as typeof globalThis & {
   mongoClient?: MongoClient;
+  mongoDb?: Db;
+  dbInitializedPromise?: Promise<void>;
 };
 
 if (!globalWithMongo.mongoClient) {
-  globalWithMongo.mongoClient = new MongoClient(uri);
+  globalWithMongo.mongoClient = new MongoClient(uri, {
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    maxIdleTimeMS: 30000,
+  });
 }
-client = globalWithMongo.mongoClient;
 
-// Initialize Database Tables and Seeding
-let dbInitializedPromise: Promise<void> | null = null;
+const client = globalWithMongo.mongoClient;
+let db: Db = globalWithMongo.mongoDb!;
 
 export async function initDb(): Promise<void> {
-  if (dbInitializedPromise) return dbInitializedPromise;
+  if (globalWithMongo.dbInitializedPromise) {
+    db = globalWithMongo.mongoDb!;
+    return globalWithMongo.dbInitializedPromise;
+  }
 
-  dbInitializedPromise = (async () => {
+  globalWithMongo.dbInitializedPromise = (async () => {
     try {
       await client.connect();
-      db = client.db(); // Uses the default database defined in the connection URI (which is 'sws')
+      const connectedDb = client.db();
+      db = connectedDb;
+      globalWithMongo.mongoDb = connectedDb;
 
       // Seed Default Admin
       const adminRes = await db.collection("admins").countDocuments();
@@ -109,11 +116,12 @@ export async function initDb(): Promise<void> {
       }
     } catch (err) {
       console.error("Error initializing MongoDB connection:", err);
+      globalWithMongo.dbInitializedPromise = undefined;
       throw err;
     }
   })();
 
-  return dbInitializedPromise;
+  return globalWithMongo.dbInitializedPromise;
 }
 
 // ===== Helper Note Finder =====
