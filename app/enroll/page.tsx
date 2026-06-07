@@ -10,6 +10,7 @@ export default function EnrollPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [photoName, setPhotoName] = useState("");
 
   const [formData, setFormData] = useState({
     // Step 1: Admission & Personal
@@ -262,14 +263,19 @@ export default function EnrollPage() {
                               onChange={(e) => {
                                 const file = e.target.files?.[0];
                                 if (file) {
-                                  setFormData(p => ({ ...p, studentPhoto: file.name }));
+                                  setPhotoName(file.name);
+                                  const reader = new FileReader();
+                                  reader.onloadend = () => {
+                                    setFormData(p => ({ ...p, studentPhoto: reader.result as string }));
+                                  };
+                                  reader.readAsDataURL(file);
                                 }
                               }}
                               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div className="text-[10px] font-bold text-black flex flex-col items-center justify-center min-h-[42px]">
-                              {formData.studentPhoto ? (
-                                <span className="text-green-600 font-extrabold truncate w-full px-1">✓ {formData.studentPhoto}</span>
+                              {photoName ? (
+                                <span className="text-green-600 font-extrabold truncate w-full px-1">✓ {photoName}</span>
                               ) : (
                                 <>
                                   <span className="text-blue-600 font-extrabold uppercase text-[9px]">Upload Photo</span>
